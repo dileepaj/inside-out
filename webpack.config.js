@@ -4,15 +4,15 @@ const env = process.env.NODE_ENV || 'development';
 const NODEMODULES = path.resolve(__dirname, 'node_modules');
 
 const config = {
-   entry: path.resolve(__dirname, './src/main.js'),
+   entry: path.resolve(__dirname, './public/main.js'),
 	
    output: {
-      filename: path.resolve(__dirname, 'src/build/bundle.js'),
+      filename: path.resolve(__dirname, 'public/build/bundle.js'),
    },
 	
    devServer: {
       inline: true,
-      publicPath: '/src/',
+      publicPath: '/public/',
       port: 3000
    },
 	
