@@ -4,7 +4,7 @@
   "description": "Analytics engine for ComTale",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base src/ --hot",
+    "start": "nodemon server/app.js",
     "build": "webpack",
     "test": ""
   },
@@ -22,8 +22,12 @@
   "author": "99xtechnology.com",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.14.0",
+    "material-ui": "^0.15.3",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "react-router": "^2.6.1",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
@@ -32,6 +36,7 @@
     "babel-preset-react": "^6.11.1",
     "eslint": "^3.1.1",
     "eslint-config-google": "^0.6.0",
+    "jscs": "^3.0.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }
