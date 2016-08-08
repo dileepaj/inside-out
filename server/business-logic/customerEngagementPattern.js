@@ -1,47 +1,47 @@
+// Logic tier for retrieving data regarding the customer engagement pattern the data should be
+// represented in a 3D graph with quantity, regularity and consistency as x,y,z axises
 'use strict'
 
-const sampleData = require('./sample');  
+const sampleData = require('../mock_data'); 
+const keyMaps = require('../mappers/mainObject.js'); 
 const _ = require('underscore');
 
 
 /* returns an array of objects with each object consisting data for a single customer
    {custID : value , amount : value //sum of all purchases , totalPurchases : value //no. of purchases made} 
 */
-module.exports.purchaseResults = function(){
+module.exports.purchasePatternResults = function(){
     let customer = [];
     let result = [];
 
     sampleData.map((data) => {
-        result = _.where(customer,{custID : data.custID});
+        result = _.where(customer,{custID : data[keyMaps.customerId]});
         if(customer.length == 0 || result.length == 0){
             let temp = {};
-            let count = 0;
-            _.where(sampleData,{custID:data.custID}).map((value)=>{
-                count+= 1;
-            });
 
-            temp["custID"] = data.custID;
-            temp["totalAmount"] = data.amount; 
-            temp["totalPurchases"] = count;
+            temp["custID"] = data[keyMaps.customerId];
+            temp["totalAmount"] = parseFloat(data[keyMaps.payment]); 
+            temp["totalPurchases"] = 1;
             temp["purchaseDates"] = [];
 
-            temp["purchaseDates"].push(data.date);
+            temp["purchaseDates"].push(data[keyMaps.ecommerceCreateTime]);
 
             customer.push(temp);
         }else{
             customer.map((value) => {
                 if(value.custID == result[0].custID){
-                    value.totalAmount += data.amount;
-                    value.purchaseDates.push(data.date);
+                    value.totalAmount += parseFloat(data[keyMaps.payment]);
+                    value.purchaseDates.push(data.ecommerceCreateTime);
+                    value.totalPurchases += 1;  
                 }
-            });
+            });      
         }
         
     });
     calculateTimeGap(customer);
     return customer;
 }
-
+// calculates the average gap between purchases for single customer
 function calculateTimeGap(purchaseData){   
     return new Promise((resolve,reject) => {
         purchaseData.map((data) => {
@@ -52,7 +52,7 @@ function calculateTimeGap(purchaseData){
                 tempTime.push((Date.parse(dates)/1000)/60/60/24);
             });
             let tempDates = tempTime.sort(sortByNumber).reverse()
-
+            
             for(let i=0 ; i < tempDates.length ; i++){
                 if(tempDates[i+1] !== undefined){
                     data.averageGap += (tempDates[i] - tempDates[i+1])/(tempDates.length-1);
@@ -67,18 +67,25 @@ function calculateTimeGap(purchaseData){
         });
     });
 }
-// calculates standard deviation for a sample data for the equation
+// calculates standard deviation accorging to the sample data distribution equation
 function calculateSTDdeviation(purchaseData){   
     return new Promise((resolve,reject) => {
         try{
-            let total = 0;
-            purchaseData["consistency"]
+            let variance = 0;
+            let count = 0;
+            purchaseData["consistency"];
+            //variance = sum(difference^2)/numberOfDifferences
             purchaseData.tempGaps.map((value) => {
-                total += (value - purchaseData.averageGap) * (value - purchaseData.averageGap);
+                variance += Math.pow(value,2);
+                count++;
             });
-            purchaseData.consistency = (1/(purchaseData.totalPurchases - 1)) * total ;  
-            delete purchaseData["tempGaps"];
+            variance = (variance/count);
+            //standard deviation = sqrt(variance)
+            purchaseData.consistency = Math.sqrt(variance);  
 
+            delete purchaseData["tempGaps"];
+            delete purchaseData["purchaseDates"];
+            
             return resolve({status : true}); 
         }catch(error){
             return reject({status : false , message : "error occured while proccessing consistency"});
