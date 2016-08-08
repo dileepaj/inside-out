@@ -1,7 +1,6 @@
 //Used in case of change of field names in the database
 
-module.exports = [
-                  {
+module.exports = {
                     "orderNumber": "orderNumber",
                     "orderSource": "orderSource",
                     "customerId": "customerId",
@@ -23,5 +22,4 @@ module.exports = [
                     "ecommerceCreateTime": "ecommerceCreateTime",
                     "ecommercePaymentTime": "ecommercePaymentTime",
                     "ecommerceEndTime": "ecommerceEndTime",
-                  }
-                ]
+                  };
