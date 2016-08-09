@@ -1,6 +1,7 @@
 /**
  * Created by Dishan on 8/9/2016.
  */
+
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 
@@ -11,7 +12,7 @@ const StyledAppBar = () => (
 			top: 0,
 			left: 0,
 			right: 0,
-			height:500,
+			height:'40%'
 		}}
 		iconClassNameRight="muidocs-icon-navigation-expand-more"
 	/>
