@@ -5,6 +5,7 @@
 
 const sampleData = require('../mock_data.json');
 const keyMap = require('../mappers/mainObject.js');
+const logger = require('../utils/logger');
 
 function calculateNumberOfPurchasesByDay() {
 	//create return object
@@ -48,6 +49,7 @@ function calculateNumberOfPurchasesByDay() {
 				returnObj.saturday += Number(item[keyMap.payment]);
 				break;
 			default: 
+				logger.log('error', 'Incompatible day value found when calculating number of purchases by day.');
 				throw "Incompatible day value found when calculating number of purchases by day.";
 		}
 	});
