@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/app.js",
     "build": "webpack",
-    "test": ""
+    "test": "mocha server/tests/"
   },
   "keywords": [
     "react",
@@ -27,7 +27,8 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.6.1",
-    "react-tap-event-plugin": "^1.0.0"
+    "react-tap-event-plugin": "^1.0.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
@@ -38,6 +39,8 @@
     "eslint-config-google": "^0.6.0",
     "jscs": "^3.0.7",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "supertest": "2.0.0",
+    "chai": "3.5.0"
   }
 }
