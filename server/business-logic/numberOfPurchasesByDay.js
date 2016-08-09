@@ -22,7 +22,7 @@ function calculateNumberOfPurchasesByDay() {
 		
 		//get day of item
 		let day = new Date(item[keyMap.ecommerceCreateTime]).getDay();
-		console.log(keyMap.ecommerceCreateTime);
+
 		//use switch case to add items
 		switch (day) {
 			case 0:
