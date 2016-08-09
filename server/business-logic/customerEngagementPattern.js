@@ -23,7 +23,7 @@ module.exports.purchasePatternResults = function(){
                 let temp = {};
 
                 temp["custID"] = data[keyMaps.customerId];
-                temp["totalAmount"] = parseFloat(data[keyMaps.payment]); 
+                temp["totalAmount"] = parseInt(data[keyMaps.payment]); 
                 temp["totalPurchases"] = 1;
                 temp["purchaseDates"] = [];
 
@@ -33,7 +33,7 @@ module.exports.purchasePatternResults = function(){
             }else{
                 customer.map((value) => {
                     if(value.custID == result[0].custID){
-                        value.totalAmount += parseFloat(data[keyMaps.payment]);
+                        value.totalAmount += parseInt(data[keyMaps.payment]);
                         value.purchaseDates.push(data.ecommerceCreateTime);
                         value.totalPurchases += 1;  
                     }
@@ -86,12 +86,16 @@ function calculateSTDdeviation(purchaseData){
         });
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
-        purchaseData.consistency = Math.sqrt(variance);  
+        purchaseData.consistency = Math.sqrt(variance); 
+
+        //rounding of the values  
+        purchaseData.consistency = parseInt(purchaseData.consistency);
+        purchaseData.averageGap = parseInt(purchaseData.averageGap);
 
         delete purchaseData["tempGaps"];
         delete purchaseData["purchaseDates"];
         delete purchaseData["totalPurchases"];
-        
+
     }catch(exception){
         throw exception;
     }
