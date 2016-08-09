@@ -28,6 +28,25 @@ router.get('/customer-engagement-pattern', function(req, res) {
 * desc: endpoint to get all the total purchase value per day
 * return: {status: true/false, message: JSON with values/error }
 */
+/**
+ * @api {get} /purchases-by-days Get data for total purchase amount for every day of the week
+ * @apiName PurchasesByDay
+ * @apiGroup Data
+ *
+ *
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+		"sunday": 1456,
+		"monday": 4321,
+		... 
+	}
+}
+*/
 router.get('/purchases-by-days', function(req, res) {
 	
 	try {
