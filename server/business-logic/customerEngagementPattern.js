@@ -1,5 +1,7 @@
-// Logic tier for retrieving data regarding the customer engagement pattern the data should be
-// represented in a 3D graph with quantity, regularity and consistency as x,y,z axises
+/*  Author : rifhan
+    Logic tier for retrieving data regarding the customer engagement pattern the data should be
+    represented in a 3D graph with quantity, regularity and consistency as x,y,z axises
+*/
 'use strict'
 
 const sampleData = require('../mock_data'); 
@@ -21,7 +23,7 @@ module.exports.purchasePatternResults = function(){
                 let temp = {};
 
                 temp["custID"] = data[keyMaps.customerId];
-                temp["totalAmount"] = parseFloat(data[keyMaps.payment]); 
+                temp["totalAmount"] = parseInt(data[keyMaps.payment]); 
                 temp["totalPurchases"] = 1;
                 temp["purchaseDates"] = [];
 
@@ -66,6 +68,7 @@ function calculateTimeGap(purchaseData){
             }
             calculateSTDdeviation(data);
         });
+
         return purchaseData;
     }catch(exception){
         throw exception;
@@ -83,11 +86,16 @@ function calculateSTDdeviation(purchaseData){
         });
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
-        purchaseData.consistency = Math.sqrt(variance);  
+        purchaseData.consistency = Math.sqrt(variance); 
+
+        //rounding of the values  
+        // purchaseData.consistency = parseInt(purchaseData.consistency);
+        // purchaseData.averageGap = parseInt(purchaseData.averageGap);
 
         delete purchaseData["tempGaps"];
         delete purchaseData["purchaseDates"];
-        
+        delete purchaseData["totalPurchases"];
+
     }catch(exception){
         throw exception;
     }

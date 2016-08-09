@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7368578-e584-4bbd-838c-e4c62db0bdcf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/business-logic/revenuePerCityByOrderSource.js" afterPath="$PROJECT_DIR$/server/business-logic/revenuePerCityByOrderSource.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/api.js" afterPath="$PROJECT_DIR$/server/controllers/api.js" />
-    </list>
+    <list default="true" id="d7368578-e584-4bbd-838c-e4c62db0bdcf" name="Default" comment="" />
     <ignored path="inside-out.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +54,8 @@
       <file leaf-file-name="revenuePerCityByOrderSource.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/business-logic/revenuePerCityByOrderSource.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -294,12 +290,12 @@
       <option name="presentableId" value="Default" />
       <updated>1470721668390</updated>
       <workItem from="1470721670431" duration="198000" />
-      <workItem from="1470721875298" duration="23107000" />
+      <workItem from="1470721875298" duration="23189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23305000" />
+    <option name="totallyTimeSpent" value="23387000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -422,8 +418,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/business-logic/revenuePerCityByOrderSource.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="53" column="59" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
           <folding />
         </state>
       </provider>
