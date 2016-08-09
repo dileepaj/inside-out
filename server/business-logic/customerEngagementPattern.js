@@ -13,43 +13,48 @@ const _ = require('underscore');
 module.exports.purchasePatternResults = function(){
     let customer = [];
     let result = [];
+    let filteredCustomerData = [];
+    try{
+        sampleData.map((data) => {
+            result = _.where(customer,{custID : data[keyMaps.customerId]});
+            if(customer.length == 0 || result.length == 0){
+                let temp = {};
 
-    sampleData.map((data) => {
-        result = _.where(customer,{custID : data[keyMaps.customerId]});
-        if(customer.length == 0 || result.length == 0){
-            let temp = {};
+                temp["custID"] = data[keyMaps.customerId];
+                temp["totalAmount"] = parseFloat(data[keyMaps.payment]); 
+                temp["totalPurchases"] = 1;
+                temp["purchaseDates"] = [];
 
-            temp["custID"] = data[keyMaps.customerId];
-            temp["totalAmount"] = parseFloat(data[keyMaps.payment]); 
-            temp["totalPurchases"] = 1;
-            temp["purchaseDates"] = [];
+                temp["purchaseDates"].push(data[keyMaps.ecommerceCreateTime]);
 
-            temp["purchaseDates"].push(data[keyMaps.ecommerceCreateTime]);
+                customer.push(temp);
+            }else{
+                customer.map((value) => {
+                    if(value.custID == result[0].custID){
+                        value.totalAmount += parseFloat(data[keyMaps.payment]);
+                        value.purchaseDates.push(data.ecommerceCreateTime);
+                        value.totalPurchases += 1;  
+                    }
+                });      
+            }
+        });
+        // rejects customers with only 1 purchase 
+        filteredCustomerData = _.reject(customer,(value) => { return value.totalPurchases == 1 });
 
-            customer.push(temp);
-        }else{
-            customer.map((value) => {
-                if(value.custID == result[0].custID){
-                    value.totalAmount += parseFloat(data[keyMaps.payment]);
-                    value.purchaseDates.push(data.ecommerceCreateTime);
-                    value.totalPurchases += 1;  
-                }
-            });      
-        }
-        
-    });
-    calculateTimeGap(customer);
-    return customer;
+        return calculateTimeGap(filteredCustomerData);
+    }catch(exception){
+        throw "unable to process data at this time";
+    }
 }
 // calculates the average gap between purchases for single customer
 function calculateTimeGap(purchaseData){   
-    return new Promise((resolve,reject) => {
+    try{
         purchaseData.map((data) => {
             let tempTime = []
             data["averageGap"] = 0;
             data["tempGaps"] = [];
             data.purchaseDates.map((dates) => {
-                tempTime.push((Date.parse(dates)/1000)/60/60/24);
+                tempTime.push((((Date.parse(dates)/1000)/60)/60)/24);
             });
             let tempDates = tempTime.sort(sortByNumber).reverse()
             
@@ -59,38 +64,33 @@ function calculateTimeGap(purchaseData){
                     data.tempGaps.push(tempDates[i] - tempDates[i+1]);
                 }
             }
-            calculateSTDdeviation(data).then((success) => {
-                console.log("success");
-            },(error) => {
-
-            }); 
+            calculateSTDdeviation(data);
         });
-    });
+        return purchaseData;
+    }catch(exception){
+        throw exception;
+    }   
 }
 // calculates standard deviation accorging to the sample data distribution equation
 function calculateSTDdeviation(purchaseData){   
-    return new Promise((resolve,reject) => {
-        try{
-            let variance = 0;
-            let count = 0;
-            purchaseData["consistency"];
-            //variance = sum(difference^2)/numberOfDifferences
-            purchaseData.tempGaps.map((value) => {
-                variance += Math.pow(value,2);
-                count++;
-            });
-            variance = (variance/count);
-            //standard deviation = sqrt(variance)
-            purchaseData.consistency = Math.sqrt(variance);  
+    try{
+        let variance = 0;
+        let total = 0;
+        purchaseData["consistency"];
+        //variance = sum(difference^2)/numberOfDifferences
+        purchaseData.tempGaps.map((value) => {
+            total += Math.pow((value - purchaseData.averageGap),2);
+        });
+        variance = (total/(purchaseData.tempGaps.length - 1));
+        //standard deviation = sqrt(variance)
+        purchaseData.consistency = Math.sqrt(variance);  
 
-            delete purchaseData["tempGaps"];
-            delete purchaseData["purchaseDates"];
-            
-            return resolve({status : true}); 
-        }catch(error){
-            return reject({status : false , message : "error occured while proccessing consistency"});
-        }
-    });
+        delete purchaseData["tempGaps"];
+        delete purchaseData["purchaseDates"];
+        
+    }catch(exception){
+        throw exception;
+    }
 }
 
 function sortByNumber(value1, value2){
