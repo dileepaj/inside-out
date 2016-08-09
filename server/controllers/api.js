@@ -4,8 +4,8 @@ const express = require('express');
 const router = express.Router();
 const customerPurchase = require('../business-logic/customerEngagementPattern');
 const purchasesByDay = require('../business-logic/numberOfPurchasesByDay');
+const purchasesByTime = require('../business-logic/purchasesBasedOnTime');
 const customerValuePerCity = require('../business-logic/totalCustomerValuePerCity');
-
 
 router.get('/customer-engagement-pattern', function(req, res) {
 	
@@ -65,6 +65,20 @@ router.get('/purchases-by-days', function(req, res) {
 	
 });
 
+router.get('/purchases-by-time', function(req, res) {
+	try {
+		let returnJson = purchasesByTime.getPurchaseDetails();
+		res.status(200).json({
+			status: true,
+			message: returnJson
+		});
+	}catch(exception){
+		res.status(500).json({
+			status: false,
+			message: exception
+		});
+	}
+});	
 /*
  * desc: endpoint to get the total purchase value per city
  */
@@ -83,8 +97,6 @@ router.get('/customer-value-per-city', function(req, res) {
 			message: exception
 		});
 	}
-
 });
-
 
 module.exports = router;
