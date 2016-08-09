@@ -2,12 +2,25 @@
 
 const express = require('express');
 const router = express.Router();
-const customerPurchase = require('../business-logic/customerPurchase');
+const customerPurchase = require('../business-logic/customerEngagementPattern');
 const purchasesByDay = require('../business-logic/numberOfPurchasesByDay');
 
-router.get('/', function(req, res) {
-	customerPurchase.purchaseResults();
-	res.send(customerPurchase.purchaseResults());
+
+router.get('/customer-engagement-pattern', function(req, res) {
+	
+	try {
+	let returnJson = customerPurchase.purchasePatternResults();
+	res.status(200).json({
+		status: true,
+		message: returnJson
+	});
+	}
+	catch(exception) {
+		res.status(500).json({
+			status: false,
+			message: exception
+		});
+	}
 });
 
 /*
