@@ -28,7 +28,8 @@
     "react-dom": "^15.1.0",
     "react-router": "^2.6.1",
     "react-tap-event-plugin": "^1.0.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",

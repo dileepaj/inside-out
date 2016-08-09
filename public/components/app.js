@@ -1,13 +1,59 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import Drawer from './drawer';
+import NumberOfPurchasesByDay from './graphs/numberOfPurchasesByDay';
+import { Link } from 'react-router'
+
+const fetchNumberOfPurchasesByDay = function() {
+	fetch('/api/purchases-by-days')
+	  .then(function(response) {
+	    return response.json()
+	  }).then(function(json) {
+	    // console.log('parsed json', json);
+	    let data = json.message;
+	    let mappedData = [];
+	    let xAxis = 1;
+	    let values = [];
+	    for(var value in data) {
+	    	values.push(
+	    		{ "x": xAxis, "y": data[value] }
+	    	);
+	    	// mappedData.push({
+	    	// 	"name": value,
+	    	// 	"values": [
+	    	// 		{ "x": xAxis, "y": data[value] }
+	    	// 	]
+	    	// });
+	    	xAxis += 1;
+	    }
+	    mappedData.name = "service A";
+	    mappedData.values = values;
+	    console.log(mappedData);
+	    return mappedData;
+	  }).catch(function(ex) {
+	    console.log('parsing failed', ex)
+	  });
+}
+
 
 const App = React.createClass({
 	getInitialState: function() {
+		return {
+			drawer: false,
+		}
+	},
+
+	componentDidMount: function() {
+
+	},
+
+	// shouldComponentUpdate: function() {
+	// 	return true;
+	// },
+
+	_changeSideBarVisibility: function(obj) {
 		this.setState({
-			open: true
+			drawer: !this.state.drawer
 		});
 	},
 
@@ -17,20 +63,13 @@ const App = React.createClass({
 				<AppBar
 				title="Inside-out"
 				iconClassNameRight="muidocs-icon-navigation-expand-more"
+				onLeftIconButtonTouchTap={this._changeSideBarVisibility}
 				/>
-				<RaisedButton
-		          label="Open Drawer"
-		          onTouchTap={this.handleToggle}
-		        />
-		        <Drawer
-		          docked={false}
-		          width={200}
-		          open={this.state.open}
-		          onRequestChange={(open) => this.setState({open})}
-		        >
-		          <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
-		          <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
-		        </Drawer>
+				<Drawer visibility={this.state.drawer} />
+				<Link to={`/no-of-purchases-by-day`}>Purchases by day</Link>
+				{
+					this.props.children
+				}
 		    </div>
 		)
 	}
