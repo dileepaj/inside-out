@@ -1,5 +1,6 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import StyledAppBar from './AppBar/appbar';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const App = React.createClass({
@@ -7,10 +8,7 @@ const App = React.createClass({
 		return (
 			<MuiThemeProvider>
 				<div>
-					<AppBar
-					title="Inside-out"
-					iconClassNameRight="muidocs-icon-navigation-expand-more"
-					/>
+					<StyledAppBar/>
 			    </div>
 			</MuiThemeProvider>
 		)
