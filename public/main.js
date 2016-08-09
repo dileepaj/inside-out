@@ -10,6 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import NumberOfPurchasesByDay from './components/graphs/numberOfPurchasesByDay';
+import CustomerEngagementPattern from './components/graphs/customerEngagementPattern';
 
 injectTapEventPlugin();
 
@@ -18,6 +19,7 @@ ReactDOM.render((
 		<Router history={browserHistory}>
 		    <Route path="/" component={App}>
 			    <Route path="/no-of-purchases-by-day" component={NumberOfPurchasesByDay} />
+			    <Route path="/customer-enagagement-pattern" component={CustomerEngagementPattern} />
 	  		</Route>
 	  	</Router>
 	</MuiThemeProvider>

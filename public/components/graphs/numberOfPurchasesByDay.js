@@ -28,12 +28,6 @@ const NumberOfPurchasesByDay = React.createClass({
 		    	values.push(
 		    		{ "x": value, "y": data[value] }
 		    	);
-		    	// mappedData.push({
-		    	// 	"name": value,
-		    	// 	"values": [
-		    	// 		{ "x": xAxis, "y": data[value] }
-		    	// 	]
-		    	// });
 		    	xAxis += 1;
 		    }
 		    mappedData = {

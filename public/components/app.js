@@ -67,6 +67,8 @@ const App = React.createClass({
 				/>
 				<Drawer visibility={this.state.drawer} />
 				<Link to={`/no-of-purchases-by-day`}>Purchases by day</Link>
+				<Link to={`/customer-enagagement-pattern`}>Customer engagement pattern</Link>
+				
 				{
 					this.props.children
 				}
