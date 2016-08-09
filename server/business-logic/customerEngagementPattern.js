@@ -33,7 +33,7 @@ module.exports.purchasePatternResults = function(){
             }else{
                 customer.map((value) => {
                     if(value.custID == result[0].custID){
-                        value.totalAmount += parseInt(data[keyMaps.payment]);
+                        value.totalAmount += parseFloat(data[keyMaps.payment]);
                         value.purchaseDates.push(data.ecommerceCreateTime);
                         value.totalPurchases += 1;  
                     }
@@ -89,8 +89,8 @@ function calculateSTDdeviation(purchaseData){
         purchaseData.consistency = Math.sqrt(variance); 
 
         //rounding of the values  
-        purchaseData.consistency = parseInt(purchaseData.consistency);
-        purchaseData.averageGap = parseInt(purchaseData.averageGap);
+        // purchaseData.consistency = parseInt(purchaseData.consistency);
+        // purchaseData.averageGap = parseInt(purchaseData.averageGap);
 
         delete purchaseData["tempGaps"];
         delete purchaseData["purchaseDates"];
