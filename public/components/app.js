@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import AppBar from './appbar';
 import Drawer from './drawer';
 import NumberOfPurchasesByDay from './graphs/numberOfPurchasesByDay';
 import { Link } from 'react-router'
@@ -60,11 +60,7 @@ const App = React.createClass({
 	render: function() {
 		return (			
 			<div>
-				<AppBar
-				title="Inside-out"
-				iconClassNameRight="muidocs-icon-navigation-expand-more"
-				onLeftIconButtonTouchTap={this._changeSideBarVisibility}
-				/>
+				<AppBar/>
 				<Drawer visibility={this.state.drawer} />
 				<Link to={`/no-of-purchases-by-day`}>Purchases by day</Link>
 				<Link to={`/customer-enagagement-pattern`}>Customer engagement pattern</Link>
