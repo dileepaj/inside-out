@@ -1,10 +1,6 @@
 /**
  * Created by Dewmi on 8/8/2016.
  */
-
-
-// Logic tier for retrieving data regarding the customer engagement pattern the data should be
-// represented in a 3D graph with quantity, regularity and consistency as x,y,z axises
 'use strict'
 
 const sampleData = require('../mock.json');
@@ -20,9 +16,24 @@ module.exports.revPerCityByOrderSource = function () {
         try{
             sampleData.map((data) => {
                 result = _.where(city,{city : data[keyMaps.city]});
+   
+                    //console.log(data[keyMaps.city]);
+
                 if(city.length == 0 || result.length == 0){
                     let temp = {};
-                    let tmall ={
+
+                    temp["city"] = data[keyMaps.city];
+
+                    temp["totTamll-Rev"] = 0;
+                    temp["totJd-Rev"] = 0;
+                    temp["totYh-dRev"] = 0;
+
+
+                    let orderSource = data[keyMaps.orderSource];
+
+                    console.log(orderSource);
+
+                   /*  let tmall ={
                         name : "Tmall",
                         totalRevenue : 0
                     };
@@ -38,13 +49,13 @@ module.exports.revPerCityByOrderSource = function () {
                     };
 
 
-                    temp["city"] = data[keyMaps.city];
-
                     temp["orderSources"] = [];
 
-                    temp["orderSources"].push(tmall,jd,yhd);
+                    temp["orderSources"].push(tmall,jd,yhd);*/
 
                     city.push(temp);
+
+                    //console.log(city);
 
                 }else{
                     city.map((value) => {
@@ -54,25 +65,27 @@ module.exports.revPerCityByOrderSource = function () {
                                           var sources = [];
                                           sources.push(arrayItem.orderSources);
 
-                                              for(let i=arrayItem[0]; i<arrayItem.length;i++) {
+                                        sources.forEach(function (arrayItem) {
 
-                                                  if (arrayItem[i].name == "Tmall") {
+                                              console.log(arrayItem);
 
-                                                      arrayItem[i].totalRevenue += parseFloat(data[keyMaps.payment]);
+                                             if (arrayItem.name == "Tmall") {
 
-                                                  }
-                                                  else if (arrayItem[i].name == "JD") {
-                                                      arrayItem[i].totalRevenue += parseFloat(data[keyMaps.payment]);
-                                                  }
-                                                  else if (arrayItem[i].name == "YHD") {
-                                                      arrayItem[i].totalRevenue += parseFloat(data[keyMaps.payment]);
-                                                  }
+                                                 console.log(arrayItem[0]);
+                                                 arrayItem.totalRevenue += parseFloat(data[keyMaps.payment]);
+                                                 console.log("blah");
+                                             }
+                                             else if (arrayItem.name == "JD") {
+                                                 arrayItem.totalRevenue += parseFloat(data[keyMaps.payment]);
+                                             }
+                                             else if (arrayItem.name == "YHD") {
+                                                 arrayItem.totalRevenue += parseFloat(data[keyMaps.payment]);
+                                             }
 
-                                              }
                                          });
 
 
-                                      // });
+                                      });
 
                           }catch (exception){
                               console.log(exception);
@@ -84,6 +97,7 @@ module.exports.revPerCityByOrderSource = function () {
 
             });
 
+            //console.log(city);   
             return city;
 
         }catch(exception){
