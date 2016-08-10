@@ -72,6 +72,9 @@ const App = React.createClass({
 					onLeftIconButtonTouchTap={this._changeSideBarVisibility}
 				/>
 				<Drawer visibility={this.state.drawer} />
+				<Link to={`/no-of-purchases-by-day`}>Purchases by day </Link>
+				<Link to={`/customer-enagagement-pattern`}>Customer engagement pattern </Link>
+				<Link to={`/purchases-by-time`}>Purchases by time </Link>
 				<Link to={`/no-of-purchases-by-day`}>Purchases by day</Link>
 				<Link to={`/customer-enagagement-pattern`}>Customer engagement pattern</Link>
 
