@@ -3,7 +3,7 @@
  */
 'use strict'
 
-const sampleData = require('../mock.json');
+const sampleData = require('../orders.json');
 const keyMaps = require('../mappers/mainObject.js');
 const _ = require('underscore');
 
@@ -15,53 +15,49 @@ module.exports.revPerCityByOrderSource = function () {
 
         try{
             sampleData.map((data) => {
-                result = _.where(city,{city : data[keyMaps.city]});
-   
-                    //console.log(data[keyMaps.city]);
+                 result = _.where(city,{city : data[keyMaps.city]});
+
+                 console.log(result);
 
                 if(city.length == 0 || result.length == 0){
+
                     let temp = {};
 
                     temp["city"] = data[keyMaps.city];
 
-                    temp["totTamll-Rev"] = 0;
-                    temp["totJd-Rev"] = 0;
-                    temp["totYh-dRev"] = 0;
+                    temp["tmall"] = 0;
+                    temp["JD"] = 0;
+                    temp["YHD"] = 0;
 
 
                     let orderSource = data[keyMaps.orderSource];
 
-                    console.log(orderSource);
+                    if(orderSource == "Tmall"){
 
-                   /*  let tmall ={
-                        name : "Tmall",
-                        totalRevenue : 0
-                    };
+                        temp["tmall"] = parseFloat(data[keyMaps.payment]);
+                    }
+                    else if(orderSource == "JD") {
 
-                    let jd ={
-                         name : "JD",
-                        totalRevenue : 0
-                    };
+                        temp["JD"] = parseFloat(data[keyMaps.payment]);
 
-                    let yhd ={
-                        name : "YHD",
-                        totalRevenue : 0
-                    };
+                    }else if(orderSource == "YHD"){
 
-
-                    temp["orderSources"] = [];
-
-                    temp["orderSources"].push(tmall,jd,yhd);*/
+                        temp["YHD"] = parseFloat(data[keyMaps.payment]);
+                    }
 
                     city.push(temp);
-
-                    //console.log(city);
 
                 }else{
                     city.map((value) => {
                         if(value.city == result[0].city){
                           try {
-                                      city.forEach(function (arrayItem) {
+
+                               //console.log(value);
+
+                                     //let orderSrc = value.orderSource;
+
+
+                                     /* city.forEach(function (arrayItem) {
                                           var sources = [];
                                           sources.push(arrayItem.orderSources);
 
@@ -85,7 +81,10 @@ module.exports.revPerCityByOrderSource = function () {
                                          });
 
 
-                                      });
+                                      });*/
+
+                              //console.log("value city" + value.city);
+                              //console.log("result 0" + (result[0].city));
 
                           }catch (exception){
                               console.log(exception);
@@ -97,7 +96,7 @@ module.exports.revPerCityByOrderSource = function () {
 
             });
 
-            //console.log(city);   
+            //console.log(city);
             return city;
 
         }catch(exception){
