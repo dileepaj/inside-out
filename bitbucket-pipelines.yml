@@ -10,5 +10,5 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm --version
           - npm install
-          - npm start
+          - node server/app.js
           - npm test
