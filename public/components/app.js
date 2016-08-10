@@ -58,21 +58,27 @@ const App = React.createClass({
 	},
 
 	render: function() {
-		return (			
+		return (
 			<div>
 				<AppBar
-				title="Inside-out"
-				iconClassNameRight="muidocs-icon-navigation-expand-more"
-				onLeftIconButtonTouchTap={this._changeSideBarVisibility}
+					style={{
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						right: 0,
+					}}
+					title="Inside-out"
+					iconClassNameRight="muidocs-icon-navigation-expand-more"
+					onLeftIconButtonTouchTap={this._changeSideBarVisibility}
 				/>
 				<Drawer visibility={this.state.drawer} />
 				<Link to={`/no-of-purchases-by-day`}>Purchases by day</Link>
 				<Link to={`/customer-enagagement-pattern`}>Customer engagement pattern</Link>
-				
+
 				{
 					this.props.children
 				}
-		    </div>
+			</div>
 		)
 	}
 });
