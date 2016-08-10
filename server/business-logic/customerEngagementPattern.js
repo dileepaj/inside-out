@@ -80,7 +80,7 @@ function calculateSTDdeviation(purchaseData){
         let variance = 0;
         let total = 0;
         purchaseData["consistency"];
-        //variance = sum(difference^2)/numberOfDifferences
+        //variance = sum(difference^2)/numberOfDifferences - 1
         purchaseData.tempGaps.map((value) => {
             total += Math.pow((value - purchaseData.averageGap),2);
         });
