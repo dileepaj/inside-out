@@ -38,7 +38,6 @@ module.exports.revPerCityByOrderSource = function () {
                      revenueObj[data[keyMap.orderSource]][data[keyMap.city]]['totRevenue'] += Number(data[keyMap.payment]);
                  }
 
-
              }
 
 
