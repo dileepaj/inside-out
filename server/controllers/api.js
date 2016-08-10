@@ -6,6 +6,7 @@ const customerPurchase = require('../business-logic/customerEngagementPattern');
 const purchasesByDay = require('../business-logic/numberOfPurchasesByDay');
 const purchasesByTime = require('../business-logic/purchasesBasedOnTime');
 const customerValuePerCity = require('../business-logic/totalCustomerValuePerCity');
+const avgAmountSpentPerCity = require('../business-logic/averageAmountSpentPerCity');
 const revenuePerCityByOrderSource = require('../business-logic/revenuePerCityByOrderSource');
 
 router.get('/customer-engagement-pattern', function(req, res) {
@@ -25,10 +26,6 @@ router.get('/customer-engagement-pattern', function(req, res) {
 	}
 });
 
-/*
-* desc: endpoint to get all the total purchase value per day
-* return: {status: true/false, message: JSON with values/error }
-*/
 /**
  * @api {get} /purchases-by-days Get data for total purchase amount for every day of the week
  * @apiName PurchasesByDay
@@ -121,5 +118,22 @@ router.get('/rev-perCity-by-orderSource', function(req, res) {
 
 });
 
+router.get('/avg-amount-spent-per-city', function(req, res) {
+	
+	try {
+		let returnJson = avgAmountSpentPerCity.calculateAverageAmountSpentPerCity();
+		res.status(200).json({
+			status: true,
+			message: returnJson
+		});
+	}
+	catch(exception) {
+		res.status(500).json({
+			status: false,
+			message: exception
+		});
+	}
+	
+});
 
 module.exports = router;
