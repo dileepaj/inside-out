@@ -121,7 +121,7 @@ router.get('/rev-perCity-by-orderSource', function(req, res) {
 router.get('/avg-amount-spent-per-city', function(req, res) {
 	
 	try {
-		let returnJson = avgAmountSpentPerCity.calculateAverageAmountSpentPerCity();
+		let returnJson = avgAmountSpentPerCity.getPaymentsForCitiesByOrderSource();
 		res.status(200).json({
 			status: true,
 			message: returnJson

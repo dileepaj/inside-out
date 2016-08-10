@@ -79,4 +79,4 @@ function calculateAverageAmountSpentPerCity() {
 //     return finalArray;
 }
 
-module.exports.calculateAverageAmountSpentPerCity = calculateAverageAmountSpentPerCity;
+module.exports.getPaymentsForCitiesByOrderSource = getPaymentsForCitiesByOrderSource;
