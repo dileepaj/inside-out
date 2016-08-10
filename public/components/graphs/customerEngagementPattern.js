@@ -55,7 +55,7 @@ function loadGraph(mappedData) {
         },
         xAxis: {
             min: 0,
-            max: 10,
+            max: 15000,
             gridLineWidth: 1
         },
         zAxis: {
