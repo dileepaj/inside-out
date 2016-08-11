@@ -8,10 +8,13 @@ function calculateCustomersPerCity() {
 	return 	_.chain(sampleData)
 		.groupBy('city')
 		.map(function (value,key) {
-			var totalCustomers = _.countBy(value, function (value){
-				return memo + parseInt(value.payment);
-			});
+			var totalCustomers = _.size(_.countBy(value, function (value){
+				return (value.customerId);
+			}));
 			return {'label':key,'value' :totalCustomers};
+		})
+		.reject(function (value) {
+			return (value.value < 100 || value.label ==='undefined')
 		})
 		.value();
 }
