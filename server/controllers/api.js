@@ -17,7 +17,8 @@ router.get('/customer-engagement-pattern', function(req, res) {
 	let returnJson = customerPurchase.purchasePatternResults();
 	res.status(200).json({
 		status: true,
-		message: returnJson
+		retention : returnJson.retention,
+		message: returnJson.message
 	});
 	}
 	catch(exception) {
