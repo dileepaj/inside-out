@@ -179,7 +179,7 @@ HTTP/1.1 200 OK
 router.get('/avg-amount-spent-per-city', function(req, res) {
 	
 	try {
-		let returnJson = avgAmountSpentPerCity.getPaymentsForCitiesByOrderSource();
+		let returnJson = avgAmountSpentPerCity.calculateAverageAmountSpentPerCity();
 		res.status(200).json({
 			status: true,
 			message: returnJson
