@@ -4,7 +4,7 @@
 */
 'use strict'
 
-const sampleData = require('../mock_data'); 
+const sampleData = require('../orders.json'); 
 const keyMaps = require('../mappers/mainObject.js'); 
 const _ = require('underscore');
 const logger = require('../utils/logger');

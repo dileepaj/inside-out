@@ -11,6 +11,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import NumberOfPurchasesByDay from './components/graphs/numberOfPurchasesByDay';
 import CustomerEngagementPattern from './components/graphs/customerEngagementPattern';
+import PurchasesByTime from './components/graphs/purchasesByTime';
+import CustomerValuePerCity from './components/graphs/customerValuePerCity';
 
 injectTapEventPlugin();
 
@@ -20,6 +22,8 @@ ReactDOM.render((
 		    <Route path="/" component={App}>
 			    <Route path="/no-of-purchases-by-day" component={NumberOfPurchasesByDay} />
 			    <Route path="/customer-enagagement-pattern" component={CustomerEngagementPattern} />
+			    <Route path="/purchases-by-time" component={PurchasesByTime} />
+			    <Route path="/customer-value-per-city" component={CustomerValuePerCity} />
 	  		</Route>
 	  	</Router>
 	</MuiThemeProvider>
