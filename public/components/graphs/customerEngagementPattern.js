@@ -36,10 +36,10 @@ function loadGraph(mappedData) {
             }
         },
         title: {
-            text: 'Draggable box'
+            text: 'Customer engagement pattern'
         },
         subtitle: {
-            text: 'Click and drag the plot area to rotate in space'
+            text: ''
         },
         plotOptions: {
             scatter: {
@@ -55,7 +55,7 @@ function loadGraph(mappedData) {
         },
         xAxis: {
             min: 0,
-            max: 15000,
+            max: 2000,
             gridLineWidth: 1
         },
         zAxis: {
@@ -138,6 +138,10 @@ const CustomerEngagement = React.createClass({
           }).catch(function(ex) {
             console.log('parsing failed', ex)
           });
+    },
+
+    componentWillUnmount: function() {
+
     },
 
     render: function() {
