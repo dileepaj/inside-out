@@ -61,6 +61,12 @@ const App = React.createClass({
 		return (			
 			<div>
 				<AppBar
+					style={{
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						right: 0,
+					}}
 				title="Inside-out"
 				iconClassNameRight="muidocs-icon-navigation-expand-more"
 				onLeftIconButtonTouchTap={this._changeSideBarVisibility}
