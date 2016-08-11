@@ -104,7 +104,7 @@ router.get('/total-revenue-per-city', function(req, res) {
 router.get('/total-customers-per-city', function(req, res) {
 
 	try {
-		let returnJson = totalRevenuePerCity.calculateRevenuePerCity();
+		let returnJson = totalCustomersPerCity.calculateCustomersPerCity();
 		res.status(200).json({
 			status: true,
 			message: returnJson
