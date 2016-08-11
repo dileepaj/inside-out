@@ -39,3 +39,6 @@ public/build/bundle.js
 
 #idea
 .idea
+
+#sample orders file - deleepa
+server/sample_orders.json
