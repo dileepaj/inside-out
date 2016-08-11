@@ -22,4 +22,11 @@ module.exports = {
                     "ecommerceCreateTime": "ecommerceCreateTime",
                     "ecommercePaymentTime": "ecommercePaymentTime",
                     "ecommerceEndTime": "ecommerceEndTime",
+                    "keysNeededToMap" : [
+                      {
+                        "key" : "ecommerceCreateTime",
+                        "value" : "CreateDate",
+                        "prefix" : true
+                      }
+                    ]
                   };

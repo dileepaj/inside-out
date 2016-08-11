@@ -4,10 +4,10 @@
 */
 'use strict'
 
-const sampleData = require('../mock_data'); 
+const sampleData = require('../orders.json'); 
 const keyMaps = require('../mappers/mainObject.js'); 
 const _ = require('underscore');
-
+const logger = require('../utils/logger');
 
 /* returns an array of objects with each object consisting data for a single customer
    {custID : value , amount : value //sum of all purchases , totalPurchases : value //no. of purchases made} 
@@ -40,18 +40,28 @@ module.exports.purchasePatternResults = function(){
                 });      
             }
         });
-        // rejects customers with only 1 purchase 
-        filteredCustomerData = _.reject(customer,(value) => { return value.totalPurchases == 1 });
-
-        return calculateTimeGap(filteredCustomerData);
+        // rejects customers with less than 2 purchase 
+        let totalCustomers = customer.length;
+        let countOneTimePurchase = 0;
+        filteredCustomerData = _.reject(customer,(value) => {
+            if(value.totalPurchases == 1){
+                countOneTimePurchase += 1;
+            } 
+            return value.totalPurchases <= 2  
+        });
+        return calculateTimeGap({
+            message : filteredCustomerData, 
+            retention : parseInt(countOneTimePurchase/totalCustomers * 100 )
+        });
     }catch(exception){
+        console.log(exception);
         throw "unable to process data at this time";
     }
 }
 // calculates the average gap between purchases for single customer
-function calculateTimeGap(purchaseData){   
-    try{
-        purchaseData.map((data) => {
+function calculateTimeGap(purchaseData){    
+    purchaseData.message.map((data) => {
+        try{
             let tempTime = []
             data["averageGap"] = 0;
             data["tempGaps"] = [];
@@ -67,12 +77,14 @@ function calculateTimeGap(purchaseData){
                 }
             }
             calculateSTDdeviation(data);
-        });
+        }catch(exception){
+            logger.log('error', 'Unable to calculate avergage gap calculateTimeGap method in controllers/customerEngagmentPattern.js');
+            throw exception;
+        }   
+    });
 
-        return purchaseData;
-    }catch(exception){
-        throw exception;
-    }   
+    return purchaseData;
+
 }
 // calculates standard deviation accorging to the sample data distribution equation
 function calculateSTDdeviation(purchaseData){   
@@ -80,14 +92,13 @@ function calculateSTDdeviation(purchaseData){
         let variance = 0;
         let total = 0;
         purchaseData["consistency"];
-        //variance = sum(difference^2)/numberOfDifferences
+        //variance = sum(difference^2)/numberOfDifferences - 1
         purchaseData.tempGaps.map((value) => {
             total += Math.pow((value - purchaseData.averageGap),2);
         });
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
         purchaseData.consistency = Math.sqrt(variance); 
-
         //rounding of the values  
         // purchaseData.consistency = parseInt(purchaseData.consistency);
         // purchaseData.averageGap = parseInt(purchaseData.averageGap);
@@ -97,6 +108,7 @@ function calculateSTDdeviation(purchaseData){
         delete purchaseData["totalPurchases"];
 
     }catch(exception){
+        logger.log('error', 'Unable to calculate standard deviation in controllers/customerEngagmentPattern.js');
         throw exception;
     }
 }
