@@ -139,7 +139,6 @@ router.get('/rev-perCity-by-orderSource', function(req, res) {
 
 });
 
-
 router.get('/test', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
@@ -159,6 +158,23 @@ router.get('/test', function(req, res) {
 
 });
 
+/**
+ * @api {get} /avg-amount-spent-per-city Get data on average amount spent per city per order source
+ * @apiName PurchasesByDay
+ * @apiGroup Data
+ *
+ *
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+		... 
+	}
+}
+*/
 
 router.get('/avg-amount-spent-per-city', function(req, res) {
 	
