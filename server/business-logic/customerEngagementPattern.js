@@ -7,7 +7,7 @@
 const sampleData = require('../mock_data'); 
 const keyMaps = require('../mappers/mainObject.js'); 
 const _ = require('underscore');
-
+const logger = require('../utils/logger');
 
 /* returns an array of objects with each object consisting data for a single customer
    {custID : value , amount : value //sum of all purchases , totalPurchases : value //no. of purchases made} 
@@ -49,9 +49,9 @@ module.exports.purchasePatternResults = function(){
     }
 }
 // calculates the average gap between purchases for single customer
-function calculateTimeGap(purchaseData){   
-    try{
-        purchaseData.map((data) => {
+function calculateTimeGap(purchaseData){    
+    purchaseData.map((data) => {
+        try{
             let tempTime = []
             data["averageGap"] = 0;
             data["tempGaps"] = [];
@@ -67,12 +67,14 @@ function calculateTimeGap(purchaseData){
                 }
             }
             calculateSTDdeviation(data);
-        });
+        }catch(exception){
+            logger.log('error', 'Unable to calculate avergage gap calculateTimeGap method in controllers/customerEngagmentPattern.js');
+            throw exception;
+        }   
+    });
 
-        return purchaseData;
-    }catch(exception){
-        throw exception;
-    }   
+    return purchaseData;
+
 }
 // calculates standard deviation accorging to the sample data distribution equation
 function calculateSTDdeviation(purchaseData){   
@@ -87,7 +89,6 @@ function calculateSTDdeviation(purchaseData){
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
         purchaseData.consistency = Math.sqrt(variance); 
-
         //rounding of the values  
         // purchaseData.consistency = parseInt(purchaseData.consistency);
         // purchaseData.averageGap = parseInt(purchaseData.averageGap);
@@ -97,6 +98,7 @@ function calculateSTDdeviation(purchaseData){
         delete purchaseData["totalPurchases"];
 
     }catch(exception){
+        logger.log('error', 'Unable to calculate standard deviation in controllers/customerEngagmentPattern.js');
         throw exception;
     }
 }
