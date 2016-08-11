@@ -2,7 +2,7 @@ import React from 'react';
 import rd3 from 'rd3';
 import 'whatwg-fetch';
 
-const BarChart = rd3.BarChart;
+const PieChart = rd3.PieChart;
 
 const NumberOfPurchasesByDay = React.createClass({
 	getInitialState: function() {
@@ -14,8 +14,9 @@ const NumberOfPurchasesByDay = React.createClass({
 
 	componentDidMount: function() {
 		let context = this;
-		fetch('/api/customer-value-per-city')
+		fetch('/api/total-revenue-per-city')
 		  .then(function(response) {
+		  	console.log('procesing');
 		    return response.json()
 		  }).then(function(json) {
 		    let data = json.message;
@@ -33,14 +34,14 @@ const NumberOfPurchasesByDay = React.createClass({
 		return (			
 			<div>
 				{ this.state.data ? 
-					<BarChart
-					  data={this.state.data}
-					  width={750}
-					  height={300}
-					  title="Bar Chart"
-					  xAxisLabel="Value"
-					  yAxisLabel="Label"
-					/>	: ''
+					<PieChart
+				      data={this.state.data}
+				      width={900}
+				      height={750} 
+				      radius={300}
+				      innerRadius={100}
+				      sectorBorderColor="white"
+				      title="Pie Chart" />	: ''
 				}
 					
 		    </div>
