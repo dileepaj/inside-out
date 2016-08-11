@@ -2,7 +2,7 @@
 
 	const winston = require('winston');
 
-	winston.add(winston.transports.File, {filename: 'server/logs/error.log'});
+	winston.add(winston.transports.File, {filename: 'error.log'});
 	
 	// winston.handleExceptions(new winston.transports.File({ 
 	// 	filename: 'server/logs/exceptions.log', 

@@ -42,3 +42,7 @@ public/build/bundle.js
 
 #sample orders file - deleepa
 server/sample_orders.json
+
+public/build/
+src/
+

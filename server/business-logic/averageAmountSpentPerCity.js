@@ -180,4 +180,4 @@ function arraySearch(arr,val) {
     return false;
 }
 
-module.exports.calculateAverageAmountSpentPerCity = calculateAverageAmountSpentPerCity;
+module.exports.getPaymentsForCitiesByOrderSource = getPaymentsForCitiesByOrderSource;
