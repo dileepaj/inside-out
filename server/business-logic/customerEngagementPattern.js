@@ -40,17 +40,27 @@ module.exports.purchasePatternResults = function(){
                 });      
             }
         });
-        // rejects customers with only 1 purchase 
-        filteredCustomerData = _.reject(customer,(value) => { return value.totalPurchases == 1 });
-
-        return calculateTimeGap(filteredCustomerData);
+        // rejects customers with less than 2 purchase 
+        let totalCustomers = customer.length;
+        let countOneTimePurchase = 0;
+        filteredCustomerData = _.reject(customer,(value) => {
+            if(value.totalPurchases == 1){
+                countOneTimePurchase += 1;
+            } 
+            return value.totalPurchases <= 2  
+        });
+        return calculateTimeGap({
+            message : filteredCustomerData, 
+            retention : parseInt(countOneTimePurchase/totalCustomers * 100 )
+        });
     }catch(exception){
+        console.log(exception);
         throw "unable to process data at this time";
     }
 }
 // calculates the average gap between purchases for single customer
 function calculateTimeGap(purchaseData){    
-    purchaseData.map((data) => {
+    purchaseData.message.map((data) => {
         try{
             let tempTime = []
             data["averageGap"] = 0;
