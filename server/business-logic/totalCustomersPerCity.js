@@ -8,9 +8,9 @@ function calculateCustomersPerCity() {
 	return 	_.chain(sampleData)
 		.groupBy('city')
 		.map(function (value,key) {
-			var totalCustomers = _.reduce(value, function (memo, value){
+			var totalCustomers = _.countBy(value, function (value){
 				return memo + parseInt(value.payment);
-			},0 );
+			});
 			return {'label':key,'value' :totalCustomers};
 		})
 		.value();

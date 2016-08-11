@@ -6,6 +6,7 @@ const customerPurchase = require('../business-logic/customerEngagementPattern');
 const purchasesByDay = require('../business-logic/numberOfPurchasesByDay');
 const purchasesByTime = require('../business-logic/purchasesBasedOnTime');
 const totalRevenuePerCity = require('../business-logic/totalRevenuePerCity');
+const totalCustomersPerCity = require('../business-logic/totalCustomersPerCity');
 const revenuePerCityByOrderSource = require('../business-logic/revenuePerCityByOrderSource');
 
 router.get('/customer-engagement-pattern', function(req, res) {
@@ -84,6 +85,23 @@ router.get('/purchases-by-time', function(req, res) {
  * desc: endpoint to get the total purchase value per city
  */
 router.get('/total-revenue-per-city', function(req, res) {
+
+	try {
+		let returnJson = totalRevenuePerCity.calculateRevenuePerCity();
+		res.status(200).json({
+			status: true,
+			message: returnJson
+		});
+	}
+	catch(exception) {
+		res.status(500).json({
+			status: false,
+			message: exception
+		});
+	}
+});
+
+router.get('/total-customers-per-city', function(req, res) {
 
 	try {
 		let returnJson = totalRevenuePerCity.calculateRevenuePerCity();
