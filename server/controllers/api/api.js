@@ -2,18 +2,40 @@
 
 const express = require('express');
 const router = express.Router();
-const customerPurchase = require('../business-logic/customerEngagementPattern');
-const purchasesByDay = require('../business-logic/numberOfPurchasesByDay');
-const purchasesByTime = require('../business-logic/purchasesBasedOnTime');
-const totalCustomersPerCity = require('../business-logic/totalCustomersPerCity');
-const totalRevenuePerCity = require('../business-logic/totalRevenuePerCity');
-const avgAmountSpentPerCity = require('../business-logic/averageAmountSpentPerCity');
-const revenuePerCityByOrderSource = require('../business-logic/revenuePerCityByOrderSource');
-const testObjectMapping = require('../mappers/mainObjectMapper.icefresh');
-const testObject = require('./external.apis');
+const customerPurchase = require('../../business-logic/customerEngagementPattern');
+const purchasesByDay = require('../../business-logic/numberOfPurchasesByDay');
+const purchasesByTime = require('../../business-logic/purchasesBasedOnTime');
+const totalCustomersPerCity = require('../../business-logic/totalCustomersPerCity');
+const totalRevenuePerCity = require('../../business-logic/totalRevenuePerCity');
+const avgAmountSpentPerCity = require('../../business-logic/averageAmountSpentPerCity');
+const revenuePerCityByOrderSource = require('../../business-logic/revenuePerCityByOrderSource');
+const testObjectMapping = require('../../mappers/mainObjectMapper.icefresh');
+const testObject = require('.././communication-handler/external.apis');
 
+/**
+ * @api {get} /customer-engagement-pattern Get data for total purchase amount for every day of the week
+ * @apiName customer engagement pattern
+ * @apiGroup Data
+ *
+ *
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Array} message An array of objects containing all the required data
+ * @apiSuccess {Integer} number of customer who made only a single purchase
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"retention": 74,
+	"message": [{
+		"custID": "7123-ABC",
+      	"totalAmount": 493,
+      	"averageGap": 0.7513387345679804,
+      	"consistency": 0.9077817068024172
+		... 
+	}]
+}
+*/
 router.get('/customer-engagement-pattern', function(req, res) {
-	
 	try {
 	let returnJson = customerPurchase.purchasePatternResults();
 	res.status(200).json({
