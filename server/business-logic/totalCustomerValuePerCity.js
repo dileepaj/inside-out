@@ -12,7 +12,7 @@ function calculateValuePerCity() {
 				var totalPayments = _.reduce(value, function (memo, value){
 					return memo + parseInt(value.payment);
 				},0 );
-				return {'city':key,'payment' :totalPayments};
+				return {'label':key,'value' :totalPayments};
 			})
 			.value();
 }
