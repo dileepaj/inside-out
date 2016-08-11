@@ -8,6 +8,8 @@ const purchasesByTime = require('../business-logic/purchasesBasedOnTime');
 const customerValuePerCity = require('../business-logic/totalCustomerValuePerCity');
 const avgAmountSpentPerCity = require('../business-logic/averageAmountSpentPerCity');
 const revenuePerCityByOrderSource = require('../business-logic/revenuePerCityByOrderSource');
+const testObjectMapping = require('../mappers/mainObjectMapper.icefresh');
+const testObject = require('./external.apis');
 
 router.get('/customer-engagement-pattern', function(req, res) {
 	
@@ -117,6 +119,27 @@ router.get('/rev-perCity-by-orderSource', function(req, res) {
 	}
 
 });
+
+
+router.get('/test', function(req, res) {
+
+		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
+		testObjectMapping.mapIceFreshOrderObjects().then((success) => {
+			res.status(200).json({
+				status: true,
+				message: success
+			});
+		},(exception) => {
+			console.log(exception);
+			res.status(500).json({
+				status: false,
+				message: exception
+			});
+		});
+
+
+});
+
 
 router.get('/avg-amount-spent-per-city', function(req, res) {
 	
