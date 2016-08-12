@@ -5,7 +5,6 @@ const logger = require('../utils/logger');
 const _ = require('underscore');
 
 module.exports.calculateCustomersPerCity = function(){
-
 	try{
 		return 	_.chain(sampleData)
 			.groupBy('city')

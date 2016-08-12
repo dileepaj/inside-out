@@ -24,10 +24,11 @@ const DrawerCustom = React.createClass({
 		          open={this.props.visibility}
 		          onRequestChange={(open) => this.setState({open})}
 		        >
-	        	<MenuItem onTouchTap={this.handleClose}><Link to={`/no-of-purchases-by-day`}>Purchases by day </Link></MenuItem>
-		        <MenuItem onTouchTap={this.handleClose}><Link to={`/customer-enagagement-pattern`}>Customer engagement pattern </Link></MenuItem>
-				<MenuItem onTouchTap={this.handleClose}><Link to={`/purchases-by-time`}>Purchases by time </Link></MenuItem>
-				<MenuItem onTouchTap={this.handleClose}><Link to={`/customer-value-per-city`}>Customer value per city </Link></MenuItem>
+		        	<MenuItem onTouchTap={this.handleClose}><Link to={`/no-of-purchases-by-day`}>Purchases by day </Link></MenuItem>
+			        <MenuItem onTouchTap={this.handleClose}><Link to={`/customer-enagagement-pattern`}>Customer engagement pattern </Link></MenuItem>
+					<MenuItem onTouchTap={this.handleClose}><Link to={`/purchases-by-time`}>Purchases by time </Link></MenuItem>
+					<MenuItem onTouchTap={this.handleClose}><Link to={`/customer-value-per-city`}>Customer value per city </Link></MenuItem>
+					<MenuItem onTouchTap={this.handleClose}><Link to={`/total-customers-per-city`}>Total customers per city </Link></MenuItem>
 		        </Drawer>
 		    </div>
 		)
