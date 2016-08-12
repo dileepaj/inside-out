@@ -4,20 +4,24 @@ const sampleData = require('../orders.json');
 const logger = require('../utils/logger');
 const _ = require('underscore');
 
-function calculateRevenuePerCity() {
+module.exports.calculateRevenuePerCity = function(){
 
-	return 	_.chain(sampleData)
-		.groupBy('city')
-		.map(function (value,key) {
-			var totalPayments = _.reduce(value, function (memo, value){
-				return memo + parseInt(value.payment);
-			},0 );
-			return {'label':key,'value' :totalPayments};
-		})
-		.reject(function (value) {
-			return (value.value < 1000 || value.label ==='undefined')
-		})
-		.value();
-}
+	try{
+		return 	_.chain(sampleData)
+			.groupBy('city')
+			.map(function (value,key) {
+				var totalPayments = _.reduce(value, function (memo, value){
+					return memo + parseInt(value.payment);
+				},0 );
+				return {'label':key,'value' :totalPayments};
+			})
+			.reject(function (value) {
+				return (value.value < 6000 || value.label ==='undefined')
+			})
+			.value();
 
-exports.calculateRevenuePerCity = calculateRevenuePerCity;
+	}catch (exception){
+		logger.log('error', exception + "", {stack: exception.stack});
+		throw exception + "";
+	}
+};
