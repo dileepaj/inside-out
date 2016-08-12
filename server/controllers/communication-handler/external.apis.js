@@ -1,9 +1,9 @@
 "use strict"
 
 const router = require('express').Router();
-const IceFreshApi = require('../config/externalApi.config');
+const IceFreshApi = require('../../config/externalApi.config');
 const fetch = require('node-fetch');
-const logger = require('../utils/logger');
+const logger = require('../../utils/logger');
 
 module.exports.getAllIcefreshOrders = function(){
     return new Promise((resolve,reject) => {

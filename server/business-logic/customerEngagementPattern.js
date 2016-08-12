@@ -99,14 +99,10 @@ function calculateSTDdeviation(purchaseData){
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
         purchaseData.consistency = Math.sqrt(variance); 
-        //rounding of the values  
-        // purchaseData.consistency = parseInt(purchaseData.consistency);
-        // purchaseData.averageGap = parseInt(purchaseData.averageGap);
 
         delete purchaseData["tempGaps"];
         delete purchaseData["purchaseDates"];
         delete purchaseData["totalPurchases"];
-
     }catch(exception){
         logger.log('error', 'Unable to calculate standard deviation in controllers/customerEngagmentPattern.js');
         throw exception;

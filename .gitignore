@@ -40,9 +40,14 @@ public/build/bundle.js
 #idea
 .idea
 
+
+#vscode
+.vscode/
+
 #sample orders file - deleepa
 server/sample_orders.json
 
 public/build/
 src/
+
 

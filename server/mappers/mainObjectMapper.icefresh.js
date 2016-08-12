@@ -1,7 +1,7 @@
 "use strict"
 
 const tempDataDump = require('../orders');
-const iceFreshExternalApi = require('../controllers/external.apis');
+const iceFreshExternalApi = require('../controllers/communication-handler/external.apis');
 const logger = require('../utils/logger');
 const keyMaps = require('../mappers/mainObject');
 let finalOrdersArray = [];
