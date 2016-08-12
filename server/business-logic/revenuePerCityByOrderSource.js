@@ -1,55 +1,82 @@
-/**
- * Created by Dewmi on 8/8/2016.
- */
-'use strict'
+/*
+* Logic controller for calculating the amount spent in each city by the customers
+*/
 
 const sampleData = require('../orders.json');
-const keyMap = require('../mappers/mainObject.js');
+const keyMap = require('../mappers/mainObject');
+const _ = require('underscore');
 const logger = require('../utils/logger');
+const util = require('util');
+const amountSpentPerCity= require('./averageAmountSpentPerCity').getAveragePaymentsForOrderSourceByCity();
+const amountByOrderSource= require('./averageAmountSpentPerCity').getAveragePaymentsForCitiesByOrderSource();
 
 module.exports.revPerCityByOrderSource = function () {
 
-    let revenueObj = {};
+    let dataForOrderSources = amountSpentPerCity;
+    let uniqueCities = Object.keys(amountByOrderSource);
+    let uniqueOrderSources = Object.keys(dataForOrderSources);
+    let returnObject = [];
 
-    sampleData.map(data => {
-        try {
+    for(let orderSource in uniqueOrderSources) {
 
+        for(let city in uniqueCities) {
+            let test = -10;
 
-             if(typeof revenueObj[data[keyMap.orderSource]] == 'undefined' ){
+            if(returnObject.length > 0) {
+            //check if the order source exists in returnObject
 
-                 revenueObj[data[keyMap.orderSource]] = {};
+                test = _.findIndex(returnObject, item => {
+                            if(item['name'] == uniqueOrderSources[orderSource]) {
+                                return true;
+                            }
+                        });
+            }
 
-                 if(typeof revenueObj[data[keyMap.orderSource]][data[keyMap.city]] == 'undefined'){
-                    revenueObj[data[keyMap.orderSource]][data[keyMap.city]] = {};
-                    revenueObj[data[keyMap.orderSource]][data[keyMap.city]]['totRevenue'] = Number(data[keyMap.payment]);
+            let avg = 0;
+            let tempObj = {};
 
-                 }
-                 else{
-                     revenueObj[data[keyMap.orderSource]][data[keyMap.city]]['totRevenue'] += Number(data[keyMap.payment]);
-                 }
-             }
-            else{
-                 if(typeof revenueObj[data[keyMap.orderSource]][data[keyMap.city]] == 'undefined'){
-                     revenueObj[data[keyMap.orderSource]][data[keyMap.city]] = {};
-                     revenueObj[data[keyMap.orderSource]][data[keyMap.city]]['totRevenue'] = Number(data[keyMap.payment]);
+            if(test == -10) {
+                //console.log('in if');
+                //create a new object
+                tempObj = {
+                    'name': uniqueOrderSources[orderSource],
+                    'values': []
+                };
+            }
+            else if(test == -1) {
+                //create a new object
+                tempObj = {
+                    'name': uniqueOrderSources[orderSource],
+                    'values': []
+                };
+            }
+            else {
 
-                 }
-                 else{
-                     revenueObj[data[keyMap.orderSource]][data[keyMap.city]]['totRevenue'] += Number(data[keyMap.payment]);
-                 }
+                tempObj = returnObject[test];
+            }
 
-             }
+            let currentOrderSource = uniqueOrderSources[orderSource];
+            let currentCity = uniqueCities[city];
 
+            if(typeof dataForOrderSources[currentOrderSource][currentCity] == 'undefined') {
+                tempObj['values'].push({'x': uniqueCities[city], 'y': 0});  
+            }
+            else {
+                let paymentAmount = dataForOrderSources[currentOrderSource][currentCity]['payment'];
 
+                tempObj['values'].push({'x': uniqueCities[city], 'y': paymentAmount});        
+            }
+
+            if(test == -10) {
+                returnObject.push(tempObj);
+            }
+            else if(test == -1) {
+                returnObject.push(tempObj);
+            }
+            else {
+                returnObject[test] = tempObj;
+            }
         }
-        catch(exp) {
-            logger.log('error', exp + "", {stack: exp.stack});
-            throw exp + "";
-        }
-    });
-
-    return revenueObj;
-
+    }
+    return returnObject;
 };
-
-
