@@ -12,6 +12,31 @@ const revenuePerCityByOrderSource = require('../business-logic/revenuePerCityByO
 const testObjectMapping = require('../mappers/mainObjectMapper.icefresh');
 const testObject = require('./external.apis');
 
+
+/**
+ * @api {get} /customer-engagement-pattern Customer engagement pattern
+ * @apiName CustomerEngagementPattern
+ * @apiGroup Analytics
+ *
+ * @apiDescription Endpoint generates a dataset that checks customer engagement patterns by calculating 
+ * standard deviations between purchases. Data is specifically formatted for HighCharts' 3D graph.
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+      	"name": day of the week,
+      	"values": [
+        {
+          "x": time interval,
+          "timeSlot": 0,
+          "y": number of purchases
+        },
+	}
+}
+*/
 router.get('/customer-engagement-pattern', function(req, res) {
 	
 	try {
@@ -35,7 +60,8 @@ router.get('/customer-engagement-pattern', function(req, res) {
  * @apiName PurchasesByDay
  * @apiGroup Analytics
  *
- * @apiDescription Get data on average amount spent per city per order source. Data has been structured specifically for d3 graphs
+ * @apiDescription Get data on average amount spent per city per order source. Data has been 
+ * structured specifically for d3 graphs
  * @apiSuccess {Boolean} status If the calculations were successful or not
  * @apiSuccess {Object} message An object containing all the required data
  * @apiSuccessExample {Object} Success-Response:
@@ -67,6 +93,31 @@ router.get('/purchases-by-days', function(req, res) {
 	
 });
 
+/**
+ * @api {get} /purchases-by-time Purchases by time
+ * @apiName PurchasesByTime
+ * @apiGroup Analytics
+ *
+ * @apiDescription Calculates the amount of purchases made on each day of the week during given 
+ * time intervals. The data has been specifically formatted for d3 graphs.
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+      	"name": day of the week,
+      	"values": [
+        {
+          "x": time interval,
+          "timeSlot": 0,
+          "y": number of purchases
+        },
+	}
+}
+*/
+
 router.get('/purchases-by-time', function(req, res) {
 	try {
 		let returnJson = purchasesByTime.getPurchaseDetails();
@@ -81,9 +132,26 @@ router.get('/purchases-by-time', function(req, res) {
 		});
 	}
 });	
-/*
- * desc: endpoint to get the total purchase value per city
- */
+
+/**
+ * @api {get} /total-revenue-per-city Total revenue per city
+ * @apiName TotalRevenuePerCity
+ * @apiGroup Analytics
+ *
+ * @apiDescription Calculates and returns the total revenue per city
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+      		"city": "...",
+      		"revenue": ...
+		}
+	}
+}
+*/
 router.get('/total-revenue-per-city', function(req, res) {
 
 	try {
@@ -100,6 +168,26 @@ router.get('/total-revenue-per-city', function(req, res) {
 		});
 	}
 });
+
+/**
+ * @api {get} /total-customers-per-city Total customers in each city
+ * @apiName TotalCustomersPerCity
+ * @apiGroup Analytics
+ *
+ * @apiDescription Calculates and returns the total number of customers per city
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+HTTP/1.1 200 OK
+{
+	"status": true,
+	"message": {
+      		"city": "...",
+      		"amount": ...
+		}
+	}
+}
+*/
 
 router.get('/total-customers-per-city', function(req, res) {
 
@@ -179,7 +267,8 @@ router.get('/test', function(req, res) {
  * @apiName AverageAmountSpent
  * @apiGroup Analytics
  *
- * @apiDescription Get data on average amount spent per city per order source. Data has been structured specifically for d3 graphs
+ * @apiDescription Get data on average amount spent per city per order source. Data has been 
+ * structured specifically for d3 graphs
  * @apiSuccess {Boolean} status If the calculations were successful or not
  * @apiSuccess {Object} message An object containing all the required data
  * @apiSuccessExample {Object} Success-Response:
