@@ -186,6 +186,7 @@ router.get('/avg-amount-spent-per-city', function(req, res) {
 		});
 	}
 	catch(exception) {
+		console.log(exception);
 		res.status(500).json({
 			status: false,
 			message: exception
