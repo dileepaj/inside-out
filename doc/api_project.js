@@ -3,12 +3,12 @@ define({
   "version": "0.1.0",
   "description": "An analytics engine that ships with the ComTale platform.",
   "title": "ComTale InsideOut Analytics Engine",
-  "url": "",
+  "url": "http://www.com-tale.com",
   "sampleUrl": false,
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2016-08-09T07:43:03.548Z",
+    "time": "2016-08-12T05:24:43.786Z",
     "url": "http://apidocjs.com",
     "version": "0.16.1"
   }

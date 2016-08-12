@@ -8,7 +8,7 @@ const _ = require('underscore');
 const logger = require('../utils/logger');
 const util = require('util');
 
-function getAveragePaymentsForCitiesByOrderSource() {
+function getPaymentsAndCountForCitiesByOrderSource() {
 
 	let returnObject = {};
 
@@ -50,7 +50,7 @@ function getAveragePaymentsForCitiesByOrderSource() {
 	return returnObject;
 }
 
-function getAveragePaymentsForOrderSourceByCity() {
+function getPaymentsAndCountForOrderSourceByCity() {
 
 	let returnObject = {};
 
@@ -95,89 +95,115 @@ function getAveragePaymentsForOrderSourceByCity() {
 
 function calculateAverageAmountSpentPerCity() {
 
-	let dataForOrderSources = getAveragePaymentsForOrderSourceByCity();
-	let uniqueCities = Object.keys(getAveragePaymentsForCitiesByOrderSource());
-	let uniqueOrderSources = Object.keys(dataForOrderSources);
+	let dataForOrderSources = getPaymentsAndCountForOrderSourceByCity();
+	let uniqueCities = getUniqueCities();
+	let uniqueOrderSources = getUniqueOrderSources();
 	let returnObject = [];
 
-	let container = ['sam', 'henry', 'dishan'];
+	try {
 
-	//for each ordersource, check if city exist
-	for(let orderSource in uniqueOrderSources) {
+		//for each ordersource, check if city exist
+		for(let orderSource in uniqueOrderSources) {
 
-		for(let city in uniqueCities) {
-			let test = -10;
-			//console.log(returnObject.length);
-			if(returnObject.length > 0) {
-			//check if the order source exists in returnObject
+			for(let city in uniqueCities) {
+				let test = -10;
+				//console.log(returnObject.length);
+				if(returnObject.length > 0) {
+				//check if the order source exists in returnObject
 
-				test = _.findIndex(returnObject, item => {
-							if(item['name'] == uniqueOrderSources[orderSource]) {
-								return true;
-							}
-						});
-			}
+					test = _.findIndex(returnObject, item => {
+								if(item['name'] == uniqueOrderSources[orderSource]) {
+									return true;
+								}
+							});
+				}
 
-			let avg = 0;
-			let tempObj = {};
-			//console.log(test);
-			//object for orderSource exists in return object so retrieve that object
-			if(test == -10) {
-				//console.log('in if');
-				//create a new object
-				tempObj = {
-					'name': uniqueOrderSources[orderSource],
-					'values': []
-				};
-			}
-			else if(test == -1) {
-				//create a new object
-				tempObj = {
-					'name': uniqueOrderSources[orderSource],
-					'values': []
-				};
-			}
-			else {
-				//console.log('in else if');
-				tempObj = returnObject[test];
-			}
+				let avg = 0;
+				let tempObj = {};
+				//console.log(test);
+				//object for orderSource exists in return object so retrieve that object
+				if(test == -10) {
+					//console.log('in if');
+					//create a new object
+					tempObj = {
+						'name': uniqueOrderSources[orderSource],
+						'values': []
+					};
+				}
+				else if(test == -1) {
+					//create a new object
+					tempObj = {
+						'name': uniqueOrderSources[orderSource],
+						'values': []
+					};
+				}
+				else {
+					//console.log('in else if');
+					tempObj = returnObject[test];
+				}
 
-			let currentOrderSource = uniqueOrderSources[orderSource];
-			let currentCity = uniqueCities[city];
+				let currentOrderSource = uniqueOrderSources[orderSource];
+				let currentCity = uniqueCities[city];
 
-			if(typeof dataForOrderSources[currentOrderSource][currentCity] == 'undefined') {
-				tempObj['values'].push({'x': uniqueCities[city], 'y': 0});	
-			}
-			else {
-				let paymentAmount = dataForOrderSources[currentOrderSource][currentCity]['payment'];
-				let paymentCount = dataForOrderSources[currentOrderSource][currentCity]['count'];
-				let avg = paymentAmount / paymentCount;
+				if(typeof dataForOrderSources[currentOrderSource][currentCity] == 'undefined') {
+					tempObj['values'].push({'x': uniqueCities[city], 'y': 0});	
+				}
+				else {
+					let paymentAmount = dataForOrderSources[currentOrderSource][currentCity]['payment'];
+					let paymentCount = dataForOrderSources[currentOrderSource][currentCity]['count'];
+					let avg = paymentAmount / paymentCount;
 
-				tempObj['values'].push({'x': uniqueCities[city], 'y': avg});		
-			}
+					tempObj['values'].push({'x': uniqueCities[city], 'y': avg});		
+				}
 
-			if(test == -10) {
-				returnObject.push(tempObj);
-			}
-			else if(test == -1) {
-				returnObject.push(tempObj);
-			}
-			else {
-				returnObject[test] = tempObj;
+				if(test == -10) {
+					returnObject.push(tempObj);
+				}
+				else if(test == -1) {
+					returnObject.push(tempObj);
+				}
+				else {
+					returnObject[test] = tempObj;
+				}
 			}
 		}
+	}
+	catch(exp) {
+		logger.log('error', exp + "", {stack: exp.stack});
+	   	throw exp + "";
 	}
 	return returnObject;
 }
 
 function arraySearch(arr,val) {
-
-    for (var i=0; i<arr.length; i++) {
-        if (arr[i]['name'] === val) {
-        	return i;
-        }
-    }
+	try {
+	    for (var i=0; i<arr.length; i++) {
+	        if (arr[i]['name'] === val) {
+	        	return i;
+	        }
+	    }
+	}
+	catch(exp) {
+		logger.log('error', exp + "", {stack: exp.stack});
+		return false;
+	}
     return false;
 }
 
+function getUniqueCities() {
+	let uniqueCities = Object.keys(getPaymentsAndCountForCitiesByOrderSource());
+	return uniqueCities;
+}
+
+function getUniqueOrderSources() {
+	let uniqueOrderSources = Object.keys(getPaymentsAndCountForOrderSourceByCity());
+	return uniqueOrderSources;
+
+}
+
+//exporting functions
 module.exports.calculateAverageAmountSpentPerCity = calculateAverageAmountSpentPerCity;
+module.exports.getAveragePaymentsForCitiesByOrderSource = getPaymentsAndCountForCitiesByOrderSource;
+module.exports.getAveragePaymentsForOrderSourceByCity = getPaymentsAndCountForOrderSourceByCity;
+module.exports.getUniqueCities = getUniqueCities;
+module.exports.getUniqueOrderSources = getUniqueOrderSources;
