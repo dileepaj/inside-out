@@ -11,7 +11,7 @@ function calculateCustomersPerCity() {
 			var totalCustomers = _.size(_.countBy(value, function (value){
 				return (value.customerId);
 			}));
-			return {'label':key,'value' :totalCustomers};
+			return {'label':key, 'value':totalCustomers};
 		})
 		.reject(function (value) {
 			return (value.value < 100 || value.label ==='undefined')
