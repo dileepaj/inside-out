@@ -207,7 +207,7 @@ router.get('/total-customers-per-city', function(req, res) {
 });
 
 /**
- * @api {get} /rev-perCity-by-orderSource Get data for total revenue per city by order source
+ * @api {get} /rev-per-city-by-orderSource Get data for total revenue per city by order source
  * @apiName revenuePerCityByOrderSource
  * @apiGroup Analytics
  *
@@ -223,7 +223,7 @@ router.get('/total-customers-per-city', function(req, res) {
 	}
 }
  */
-router.get('/rev-perCity-by-orderSource', function(req, res) {
+router.get('/rev-per-city-by-orderSource', function(req, res) {
 
 	try {
 		let returnJson = revenuePerCityByOrderSource.revPerCityByOrderSource();
