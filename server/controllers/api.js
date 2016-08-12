@@ -118,7 +118,23 @@ router.get('/total-customers-per-city', function(req, res) {
 	}
 });
 
-
+/**
+ * @api {get} /rev-perCity-by-orderSource Get data for total revenue per city by order source
+ * @apiName revenuePerCityByOrderSource
+ * @apiGroup Data
+ *
+ *
+ * @apiSuccess {Boolean} status If the calculations were successful or not
+ * @apiSuccess {Object} message An object containing all the required data
+ * @apiSuccessExample {Object} Success-Response:
+ HTTP/1.1 200 OK
+ {
+	"status": true,
+	"message": {
+		...
+	}
+}
+ */
 router.get('/rev-perCity-by-orderSource', function(req, res) {
 
 	try {
@@ -189,6 +205,7 @@ router.get('/avg-amount-spent-per-city', function(req, res) {
 		});
 	}
 	catch(exception) {
+		console.log(exception);
 		res.status(500).json({
 			status: false,
 			message: exception
