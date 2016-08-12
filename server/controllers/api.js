@@ -33,9 +33,9 @@ router.get('/customer-engagement-pattern', function(req, res) {
 /**
  * @api {get} /purchases-by-days Get data for total purchase amount for every day of the week
  * @apiName PurchasesByDay
- * @apiGroup Data
+ * @apiGroup Analytics
  *
- *
+ * @apiDescription Get data on average amount spent per city per order source. Data has been structured specifically for d3 graphs
  * @apiSuccess {Boolean} status If the calculations were successful or not
  * @apiSuccess {Object} message An object containing all the required data
  * @apiSuccessExample {Object} Success-Response:
@@ -159,11 +159,11 @@ router.get('/test', function(req, res) {
 });
 
 /**
- * @api {get} /avg-amount-spent-per-city Get data on average amount spent per city per order source
- * @apiName PurchasesByDay
- * @apiGroup Data
+ * @api {get} /avg-amount-spent-per-city Average amount spent per city per order source
+ * @apiName AverageAmountSpent
+ * @apiGroup Analytics
  *
- *
+ * @apiDescription Get data on average amount spent per city per order source. Data has been structured specifically for d3 graphs
  * @apiSuccess {Boolean} status If the calculations were successful or not
  * @apiSuccess {Object} message An object containing all the required data
  * @apiSuccessExample {Object} Success-Response:
@@ -171,7 +171,10 @@ HTTP/1.1 200 OK
 {
 	"status": true,
 	"message": {
-		... 
+		'orderSource' : {
+			'city' : '...',
+			'average': '...'
+		} 
 	}
 }
 */
