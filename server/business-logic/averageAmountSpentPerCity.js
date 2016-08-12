@@ -181,3 +181,5 @@ function arraySearch(arr,val) {
 }
 
 module.exports.calculateAverageAmountSpentPerCity = calculateAverageAmountSpentPerCity;
+module.exports.getAveragePaymentsForCitiesByOrderSource=getAveragePaymentsForCitiesByOrderSource;
+module.exports.getAveragePaymentsForOrderSourceByCity=getAveragePaymentsForOrderSourceByCity;
