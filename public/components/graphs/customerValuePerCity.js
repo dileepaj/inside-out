@@ -16,7 +16,6 @@ const NumberOfPurchasesByDay = React.createClass({
 		let context = this;
 		fetch('/api/total-revenue-per-city')
 		  .then(function(response) {
-		  	console.log('procesing');
 		    return response.json()
 		  }).then(function(json) {
 		    let data = json.message;
@@ -24,7 +23,7 @@ const NumberOfPurchasesByDay = React.createClass({
 		    context.setState({
 				data: data
 			});
-		    // return data;
+		    return data;
 		  }).catch(function(ex) {
 		    console.log('parsing failed', ex)
 		  });
