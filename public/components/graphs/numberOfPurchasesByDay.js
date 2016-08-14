@@ -18,12 +18,10 @@ const NumberOfPurchasesByDay = React.createClass({
 		  .then(function(response) {
 		    return response.json()
 		  }).then(function(json) {
-		    // console.log('parsed json', json);
 		    let data = json.message;
 		    let mappedData = [];
 		    let xAxis = 1;
 		    let values = [];
-		    console.log('processing');
 		    for(var value in data) {
 		    	values.push(
 		    		{ "x": value, "y": data[value] }
