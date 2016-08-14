@@ -14,16 +14,15 @@ const NumberOfPurchasesByDay = React.createClass({
 
 	componentDidMount: function() {
 		let context = this;
-		fetch('/api/total-revenue-per-city')
+		fetch('/api/total-customers-per-city')
 		  .then(function(response) {
 		    return response.json()
 		  }).then(function(json) {
 		    let data = json.message;
-		    console.log(data);
 		    context.setState({
 				data: data
 			});
-		    return data;
+		    // return data;
 		  }).catch(function(ex) {
 		    console.log('parsing failed', ex)
 		  });
