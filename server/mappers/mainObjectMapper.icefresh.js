@@ -32,12 +32,29 @@ function orderObjectMap(object,finalArr){
             }else{
                 let orderSource = tempObject[keyMaps.orderSource].toLowerCase();
                 let keyValue = `${orderSource}${value.value}`
-                console.log(keyValue);
+                
                 tempObject[value.key] = object[keyValue];
-                finalArr.push(tempObject);  
+                let finalObject = {};
+                for(let key in keyMaps){
+                    finalObject[key] = tempObject[key];
+                    if(typeof keyMaps[key] === 'object'){
+                        let finalValue;
+                        keyMaps[key].map((value)=>{
+                            console.log(finalObject[value]);
+                            finalValue += `${finalObject[value]}`;
+                        });
+                        finalObject[key] = finalValue;
+                    }
+                    if(finalObject[key]  === undefined){
+                        delete finalObject[key];
+                    }
+                }
+                delete finalObject["keysNeededToMap"];
+                finalArr.push(finalObject);  
             }
         }catch(exception){
             logger.log("error","error in mapping order objects",{stack:exception.stack});
+            throw "unable map object";
         }  
     });
 }
