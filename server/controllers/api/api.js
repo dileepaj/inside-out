@@ -121,7 +121,8 @@ router.get('/purchases-by-time', function(req, res) {
 		let returnJson = purchasesByTime.getPurchaseDetails();
 		res.status(200).json({
 			status: true,
-			message: returnJson
+			highestSales : returnJson.highestSales,
+			message: returnJson.message
 		});
 	}catch(exception){
 		res.status(500).json({
