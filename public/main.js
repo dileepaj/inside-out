@@ -14,6 +14,7 @@ import CustomerEngagementPattern from './components/graphs/customerEngagementPat
 import PurchasesByTime from './components/graphs/purchasesByTime';
 import CustomerValuePerCity from './components/graphs/customerValuePerCity';
 import TotalCustomersPerCity from './components/graphs/totalCustomersPerCity';
+import Graphifier from './components/graphifier';
 
 injectTapEventPlugin();
 
@@ -26,6 +27,7 @@ ReactDOM.render((
 			    <Route path="/purchases-by-time" component={PurchasesByTime} />
 			    <Route path="/customer-value-per-city" component={CustomerValuePerCity} />
 			    <Route path="/total-customers-per-city" component={TotalCustomersPerCity} />
+			    <Route path="/all" component={Graphifier} />
 	  		</Route>
 	  	</Router>
 	</MuiThemeProvider>

@@ -5,7 +5,7 @@ const IceFreshApi = require('../../config/externalApi.config');
 const fetch = require('node-fetch');
 const logger = require('../../utils/logger');
 
-module.exports.getAllIcefreshOrders = function(){
+module.exports.getAllIcefreshOrders = function(mongoConnection){
     return new Promise((resolve,reject) => {
         return fetch(IceFreshApi.iceFresh.orders).then((response)=>{
                 // return resolve(response.json());

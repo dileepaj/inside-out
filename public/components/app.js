@@ -18,12 +18,6 @@ const fetchNumberOfPurchasesByDay = function() {
 	    	values.push(
 	    		{ "x": xAxis, "y": data[value] }
 	    	);
-	    	// mappedData.push({
-	    	// 	"name": value,
-	    	// 	"values": [
-	    	// 		{ "x": xAxis, "y": data[value] }
-	    	// 	]
-	    	// });
 	    	xAxis += 1;
 	    }
 	    mappedData.name = "service A";
