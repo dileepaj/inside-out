@@ -30,6 +30,7 @@
     "node-fetch": "^1.6.0",
     "rd3": "^0.7.1",
     "react": "^15.1.0",
+    "react-d3-map": "^0.8.3",
     "react-dom": "^15.1.0",
     "react-router": "^2.6.1",
     "react-tap-event-plugin": "^1.0.0",
