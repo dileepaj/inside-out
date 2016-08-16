@@ -5,56 +5,53 @@ const iceFreshExternalApi = require('../controllers/communication-handler/extern
 const logger = require('../utils/logger');
 const keyMaps = require('../mappers/mainObject');
 let finalOrdersArray = [];
+const mongoose = require('mongoose');
 
 module.exports.mapIceFreshOrderObjects = function(){
     return new Promise((resolve,reject) => {
+        let db = mongoose.connection;
+        let dbInstance = mongoose.model('order');
         iceFreshExternalApi.getAllIcefreshOrders().then((success) => {
-            success.map((singleOrderObject) => {
-                orderObjectMap(singleOrderObject,finalOrdersArray);
+            tempDataDump.map((object) => {
+                let tempObject = object; 
+                keyMaps.keysNeededToMap.map((value) => {
+                    try{
+                        if(object.hasOwnProperty(value.key)){                   
+                            let dbObject = new dbInstance(tempObject);
+                            dbObject.save(function (err,product,numAffected){
+                                //TODO : else queue the JOB 
+                                if(!err){
+                                    finalOrdersArray.push(tempObject);
+                                }         
+                            }); 
+                        }else{
+                            let orderSource = tempObject[keyMaps.orderSource].toLowerCase();
+                            let keyValue = `${orderSource}${value.value}`
+                            tempObject[value.key] = object[keyValue];
+                            let dbObject = new dbInstance(tempObject);
+                            
+                            dbObject.save(function (err,product,numAffected){
+                                //TODO : else queue the JOB 
+                                if(!err){
+                                    finalOrdersArray.push(tempObject);
+                                }            
+                            }); 
+                        }
+                    }catch(exception){
+                        console.log(exception);
+                        logger.log("error","error in mapping order objects",{stack:exception.stack});
+                        throw "unable map object";
+                    }  
+                });
             });
-            return resolve(finalOrdersArray);
+              
+            return resolve({status : true});
         },(error) => {
             logger.log("error","error in retrieving icefresh order data to process",{stack:error.stack});
-            return reject(error);
+            return reject({status : false});
         }).catch((exception) => {
             logger.log("error","error in retrieving icefresh order data to process",{stack:exception.stack});
-            return reject(exception);
+            return reject({status : false});
         });
-    });
-}
-
-function orderObjectMap(object,finalArr){   
-    let tempObject = object; 
-    keyMaps.keysNeededToMap.map((value) => {
-        try{
-            if(object.hasOwnProperty(value.key)){
-                finalArr.push(tempObject);
-            }else{
-                let orderSource = tempObject[keyMaps.orderSource].toLowerCase();
-                let keyValue = `${orderSource}${value.value}`
-                
-                tempObject[value.key] = object[keyValue];
-                let finalObject = {};
-                for(let key in keyMaps){
-                    finalObject[key] = tempObject[key];
-                    if(typeof keyMaps[key] === 'object'){
-                        let finalValue;
-                        keyMaps[key].map((value)=>{
-                            console.log(finalObject[value]);
-                            finalValue += `${finalObject[value]}`;
-                        });
-                        finalObject[key] = finalValue;
-                    }
-                    if(finalObject[key]  === undefined){
-                        delete finalObject[key];
-                    }
-                }
-                delete finalObject["keysNeededToMap"];
-                finalArr.push(finalObject);  
-            }
-        }catch(exception){
-            logger.log("error","error in mapping order objects",{stack:exception.stack});
-            throw "unable map object";
-        }  
     });
 }
