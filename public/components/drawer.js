@@ -29,6 +29,7 @@ const DrawerCustom = React.createClass({
 					<MenuItem onTouchTap={this.handleClose}><Link to={`/purchases-by-time`}>Purchases by time </Link></MenuItem>
 					<MenuItem onTouchTap={this.handleClose}><Link to={`/customer-value-per-city`}>Customer value per city </Link></MenuItem>
 					<MenuItem onTouchTap={this.handleClose}><Link to={`/total-customers-per-city`}>Total customers per city </Link></MenuItem>
+					<MenuItem onTouchTap={this.handleClose}><Link to={`/all`}>All</Link></MenuItem>
 		        </Drawer>
 		    </div>
 		)

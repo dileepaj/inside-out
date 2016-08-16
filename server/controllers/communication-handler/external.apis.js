@@ -8,7 +8,7 @@ const avgAmntPerCity = require('../../business-logic/averageAmountSpentPerCity')
 const https = require('https');
 
 
-module.exports.getAllIcefreshOrders = function(){
+module.exports.getAllIcefreshOrders = function(mongoConnection){
     return new Promise((resolve,reject) => {
         return fetch(IceFreshApi.iceFresh.orders).then((response)=>{
                 // return resolve(response.json());

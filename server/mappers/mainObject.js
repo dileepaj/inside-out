@@ -4,7 +4,7 @@ module.exports = {
                     "orderNumber": "orderNumber",
                     "orderSource": "orderSource",
                     "customerId": "customerId",
-                    "customerName": "customerName",
+                    "customerName": ["firstname" , "lastname"],
                     "receiverName": "receiverName",
                     "address": "address",
                     "district": "district",
@@ -21,12 +21,12 @@ module.exports = {
                     "lastmile": "lastmile",
                     "ecommerceCreateTime": "ecommerceCreateTime",
                     "ecommercePaymentTime": "ecommercePaymentTime",
-                    "ecommerceEndTime": "ecommerceEndTime",
-                    "keysNeededToMap" : [
+                    "ecommerceEndTime": "ecommerceEndTime"
+                  };
+module.exports.keysNeededToMap = [
                       {
                         "key" : "ecommerceCreateTime",
                         "value" : "CreateDate",
                         "prefix" : true
                       }
-                    ]
-                  };
+                    ];
