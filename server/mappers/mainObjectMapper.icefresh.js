@@ -5,8 +5,9 @@ const tempDataDump = require('../orders');
 const iceFreshExternalApi = require('../controllers/communication-handler/external.apis');
 const logger = require('../utils/logger');
 const keyMaps = require('../mappers/mainObject');
-let finalOrdersArray = [];
 const mongoose = require('mongoose');
+let finalOrdersArray = [];
+
 
 module.exports.mapIceFreshOrderObjects = function(){
     return new Promise((resolve,reject) => {
