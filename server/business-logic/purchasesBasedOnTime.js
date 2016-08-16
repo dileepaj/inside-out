@@ -74,7 +74,7 @@ module.exports.getPurchaseDetails = function(){
             resultData = [];
             resultData = sortedArr;
         }
-
+        
         let sortedValues = _.sortBy(resultData[i].values,'timeSlot');
         resultData[i].values = [];
         resultData[i].values = sortedValues;
@@ -96,6 +96,11 @@ module.exports.getPurchaseDetails = function(){
             let sortedValues = _.sortBy(resultData[i].values,'timeSlot');
             resultData[i].values = [];
             resultData[i].values = sortedValues;  
+        }
+        let highestAmountTimeSlot = _.sortBy(resultData[i].values,'y');
+        resultData[i]["highestSales"] = {
+           timeSlot : highestAmountTimeSlot[highestAmountTimeSlot.length-1].x, 
+           amount : highestAmountTimeSlot[highestAmountTimeSlot.length-1].y
         }
         delete resultData[i].day;
     }
