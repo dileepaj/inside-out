@@ -1,5 +1,6 @@
 import React from 'react';
 import rd3 from 'rd3';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -47,17 +48,18 @@ const NumberOfPurchasesByDay = React.createClass({
 	render: function() {
 		return (			
 			<div>
-				{ this.state.data ? 
-					<BarChart
-					  data={this.state.data}
-					  width={750}
-					  height={300}
-					  title="Bar Chart"
-					  xAxisLabel="Value"
-					  yAxisLabel="Label"
-					/>	: ''
-				}
-					
+				
+					{ this.state.data ? 
+						<BarChart
+						  data={this.state.data}
+						  width={750}
+						  height={300}
+						  title="Bar Chart"
+						  xAxisLabel="Value"
+						  yAxisLabel="Label"
+						/>	: ''
+					}
+				
 		    </div>
 		)
 	}
