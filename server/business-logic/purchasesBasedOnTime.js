@@ -8,8 +8,8 @@ const sampleData = require('../orders.json');
 const keyMaps = require('../mappers/mainObject.js'); 
 const _ = require('underscore');
 const mapDays = ["Sunday","Monday","Tuesday" ,"Wednesday" , "Thursday" ,"Friday" ,"Saturday"];
-const mapTimePeriods = ["12AM to 2AM","2AM to 4AM","4AM to 6AM" ,"6AM to 8AM" , "8AM to 10AM" ,"10AM to 12PM" ,
-                        "12PM to 2PM","2PM to 4PM","4PM to 6PM","6PM to 8PM","8PM to 10PM","10PM to 12AM"];
+const mapTimePeriods = ["00-02","02-04","04-06" ,"06-08" , "08-10" ,"10-12" ,
+                        "12-14","14-16","16-18","18-20","20-22","22-24"];
 const logger = require('../utils/logger');
 
 module.exports.getPurchaseDetails = function(){
@@ -74,7 +74,7 @@ module.exports.getPurchaseDetails = function(){
             resultData = [];
             resultData = sortedArr;
         }
-
+        
         let sortedValues = _.sortBy(resultData[i].values,'timeSlot');
         resultData[i].values = [];
         resultData[i].values = sortedValues;
@@ -96,6 +96,11 @@ module.exports.getPurchaseDetails = function(){
             let sortedValues = _.sortBy(resultData[i].values,'timeSlot');
             resultData[i].values = [];
             resultData[i].values = sortedValues;  
+        }
+        let highestAmountTimeSlot = _.sortBy(resultData[i].values,'y');
+        resultData[i]["highestSales"] = {
+           timeSlot : highestAmountTimeSlot[highestAmountTimeSlot.length-1].x, 
+           amount : highestAmountTimeSlot[highestAmountTimeSlot.length-1].y
         }
         delete resultData[i].day;
     }
