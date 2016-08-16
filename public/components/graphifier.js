@@ -14,10 +14,10 @@ const Graphifier = React.createClass({
 		return (			
 			<div>
 				<div className="row">
-					<div className="col-md-6">
+					<div className="col-xl-6 col-lg-6 col-md-6">
 						<NumberOfPurchasesByDay/>
 					</div>
-					<div className="col-md-5 col-md-offset-1">
+					<div className="col-xl-6 col-lg-6 col-md-6">
 						<CustomerValuePerCity />
 					</div>
 				</div>
