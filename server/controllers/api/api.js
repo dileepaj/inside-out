@@ -244,20 +244,19 @@ router.get('/rev-per-city-by-orderSource', function(req, res) {
 router.get('/test', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-		testObjectMapping.mapIceFreshOrderObjects().then((success) => {
-			res.status(200).json({
-				status: true,
-				message: success
-			});
-		},(exception) => {
-			console.log(exception);
-			res.status(500).json({
-				status: false,
-				message: exception
-			});
-		});
-
-
+		// testObjectMapping.mapIceFreshOrderObjects().then((success) => {
+		// 	res.status(200).json({
+		// 		status: true,
+		// 		message: success
+		// 	});
+		// },(exception) => {
+		// 	console.log(exception);
+		// 	res.status(500).json({
+		// 		status: false,
+		// 		message: exception
+		// 	});
+		// });
+		testObject.getCoordinatesForCities();
 });
 
 /**
