@@ -40,7 +40,7 @@ const NumberOfPurchasesByDay = React.createClass({
 						{ this.state.data ? 
 							<BarChart
 							  data={this.state.data}
-							  width={1400}
+							  width={1000}
 							  height={300}
 							  title="Bar Chart"
 							  xAxisLabel="Time period"
