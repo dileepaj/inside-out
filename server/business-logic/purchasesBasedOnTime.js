@@ -14,6 +14,7 @@ const logger = require('../utils/logger');
 
 module.exports.getPurchaseDetails = function(){
     let resultData = [];
+    let highestValuePeriods = [];
     sampleData.map((object) => {
         try{
             if(object.hasOwnProperty(keyMaps.ecommerceCreateTime)){        
@@ -98,11 +99,14 @@ module.exports.getPurchaseDetails = function(){
             resultData[i].values = sortedValues;  
         }
         let highestAmountTimeSlot = _.sortBy(resultData[i].values,'y');
-        resultData[i]["highestSales"] = {
-           timeSlot : highestAmountTimeSlot[highestAmountTimeSlot.length-1].x, 
-           amount : highestAmountTimeSlot[highestAmountTimeSlot.length-1].y
+        let tempValue = {
+           Day : resultData[i].name,
+           Period : highestAmountTimeSlot[highestAmountTimeSlot.length-1].x, 
+           Amount : highestAmountTimeSlot[highestAmountTimeSlot.length-1].y
         }
+        highestValuePeriods.push(tempValue);
         delete resultData[i].day;
     }
-    return resultData;
+    
+    return {message : resultData, highestSales : highestValuePeriods};
 }
