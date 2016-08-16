@@ -108,6 +108,7 @@ function loadGraph(mappedData) {
 
 import React from 'react';
 import rd3 from 'rd3';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
