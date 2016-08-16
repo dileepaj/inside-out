@@ -1,5 +1,6 @@
 "use strict"
 
+//TODO: else queue as mapping object to a job
 const tempDataDump = require('../orders');
 const iceFreshExternalApi = require('../controllers/communication-handler/external.apis');
 const logger = require('../utils/logger');
@@ -19,7 +20,6 @@ module.exports.mapIceFreshOrderObjects = function(){
                         if(object.hasOwnProperty(value.key)){                   
                             let dbObject = new dbInstance(tempObject);
                             dbObject.save(function (err,product,numAffected){
-                                //TODO : else queue the JOB 
                                 if(!err){
                                     finalOrdersArray.push(tempObject);
                                 }         
@@ -31,20 +31,18 @@ module.exports.mapIceFreshOrderObjects = function(){
                             let dbObject = new dbInstance(tempObject);
                             
                             dbObject.save(function (err,product,numAffected){
-                                //TODO : else queue the JOB 
                                 if(!err){
                                     finalOrdersArray.push(tempObject);
                                 }            
                             }); 
-                        }
+                        }   
                     }catch(exception){
                         console.log(exception);
                         logger.log("error","error in mapping order objects",{stack:exception.stack});
                         throw "unable map object";
                     }  
                 });
-            });
-              
+            });  
             return resolve({status : true});
         },(error) => {
             logger.log("error","error in retrieving icefresh order data to process",{stack:error.stack});

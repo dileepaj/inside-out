@@ -1,6 +1,7 @@
 'use strict';
 
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
 let orderModel = {
   orderNumber: String,
   OrderSource: String,
@@ -27,5 +28,13 @@ let orderModel = {
 let orderSchema = new mongoose.Schema(orderModel, {
 	strict: false
 });
+
+module.exports.getOrders = function(){
+  
+  let connection = mongoose.connection;
+  let modelInstance = mongoose.model('order');
+
+
+}
 
 module.exports = orderSchema;
