@@ -15,6 +15,6 @@ module.exports = function(){
 };
 
 function setModels(){
-    mongoose.model('order',orderSchema);
+    mongoose.model('order',orderSchema.orderSchema);
 }
 

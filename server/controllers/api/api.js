@@ -11,6 +11,7 @@ const avgAmountSpentPerCity = require('../../business-logic/averageAmountSpentPe
 const revenuePerCityByOrderSource = require('../../business-logic/revenuePerCityByOrderSource');
 const testObjectMapping = require('../../mappers/mainObjectMapper.icefresh');
 const testObject = require('.././communication-handler/external.apis');
+const orderModel = require('../../models/order.model');
 
 
 /**
@@ -245,7 +246,7 @@ router.get('/rev-per-city-by-orderSource', function(req, res) {
 router.get('/test', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-		testObjectMapping.mapIceFreshOrderObjects().then((success) => {
+		orderModel.getOrders().then((success) => {
 			res.status(200).json({
 				status: true,
 				message: success
