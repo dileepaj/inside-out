@@ -45,10 +45,6 @@ const App = React.createClass({
 
 	},
 
-	// shouldComponentUpdate: function() {
-	// 	return true;
-	// },
-
 	_changeSideBarVisibility: function(obj) {
 		this.setState({
 			drawer: !this.state.drawer
