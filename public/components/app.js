@@ -55,6 +55,10 @@ const App = React.createClass({
 		});
 	},
 
+	signOut: function() {
+		document.location = '/';
+	},
+
 	render: function() {
 		return (			
 			<div>
@@ -76,9 +80,8 @@ const App = React.createClass({
 				        targetOrigin={{horizontal: 'right', vertical: 'top'}}
 				        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 				      >
-				        <MenuItem primaryText="Refresh" />
 				        <MenuItem primaryText="Help" />
-				        <MenuItem primaryText="Sign out" />
+				        <MenuItem onClick={this.signOut}  primaryText="Sign out" />
 				      </IconMenu>
 				    }
 				/>
