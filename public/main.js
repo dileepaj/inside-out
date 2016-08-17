@@ -15,11 +15,23 @@ import PurchasesByTime from './components/graphs/purchasesByTime';
 import CustomerValuePerCity from './components/graphs/customerValuePerCity';
 import TotalCustomersPerCity from './components/graphs/totalCustomersPerCity';
 import Graphifier from './components/graphifier';
+import { cyan500 } from 'material-ui/styles/colors'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 injectTapEventPlugin();
 
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+    primary1Color: '#F57C00'
+  },
+  appBar: {
+    height: 75,
+  },
+});
+
 ReactDOM.render((
-	<MuiThemeProvider>
+	<MuiThemeProvider muiTheme={muiTheme}>
 		<Router history={browserHistory}>
 		    <Route path="/" component={App}>
 			    <Route path="/no-of-purchases-by-day" component={NumberOfPurchasesByDay} />
