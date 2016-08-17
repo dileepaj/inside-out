@@ -1,6 +1,8 @@
+//Author : Rifhan
 'use strict';
 
 const mongoose = require('mongoose');
+const logger = require('../utils/logger');
 
 let orderModel = {
   orderNumber: String,
@@ -25,16 +27,36 @@ let orderModel = {
   ecommercePaymentTime : String,
   ecommerceEndTime : String,
 }
-let orderSchema = new mongoose.Schema(orderModel, {
+module.exports.orderSchema = new mongoose.Schema(orderModel, {
 	strict: false
 });
 
 module.exports.getOrders = function(){
-  
-  let connection = mongoose.connection;
-  let modelInstance = mongoose.model('order');
+  return new Promise((resolve,reject)=>{
+    let db = mongoose.connection;
+    let Order = mongoose.model('order');
 
-
+    Order.find({},(err,orders)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(orders);
+    });
+  }); 
 }
 
-module.exports = orderSchema;
+module.exports.deleteAllOrders = function(){
+  return new Promise((resolve,reject)=>{
+    let db = mongoose.connection;
+    let Order = mongoose.model('order');
+
+    Order.remove({},(err,orders)=>{
+      if(err){
+        return reject(err);
+      }
+      return resolve(orders);
+    });
+  }); 
+}
+
+
