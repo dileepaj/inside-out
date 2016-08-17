@@ -65,7 +65,7 @@ const App = React.createClass({
 						left: 0,
 						right: 0,
 					}}
-				title="Inside-out"
+				title="ComTale - Inside Out"
 				iconClassNameRight="muidocs-icon-navigation-expand-more"
 				onLeftIconButtonTouchTap={this._changeSideBarVisibility}
 				iconElementRight={
