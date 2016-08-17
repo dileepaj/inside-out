@@ -24,11 +24,15 @@ const Graphifier = React.createClass({
 				<div className="row">
 					<PurchasesByTime />
 				</div>
-					<CustomerEngagementPattern />
-
+				<div className="row">
 					<TotalCustomersPerCity />
-
+				</div>
+				<div className="row">
+					<CustomerEngagementPattern />
+				</div>
+				<div className="row">
 					<OrderMap />
+				</div>
 		    </div>
 		)
 	}
