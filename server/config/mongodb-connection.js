@@ -16,11 +16,7 @@ module.exports = function(){
 };
 
 function setModels(){
-<<<<<<< HEAD
     mongoose.model('order',orderSchema.orderSchema);
-=======
-    mongoose.model('order',orderSchema);
     mongoose.model('geocode', geocodeSchema);
->>>>>>> 592701274e107d8816c9d393a5d9c5400182b4c5
 }
 

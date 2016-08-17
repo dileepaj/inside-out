@@ -11,12 +11,8 @@ const avgAmountSpentPerCity = require('../../business-logic/averageAmountSpentPe
 const revenuePerCityByOrderSource = require('../../business-logic/revenuePerCityByOrderSource');
 const testObjectMapping = require('../../mappers/mainObjectMapper.icefresh');
 const testObject = require('.././communication-handler/external.apis');
-<<<<<<< HEAD
 const orderModel = require('../../models/order.model');
-
-=======
 const getCitiesGeocode = require('../../business-logic/getCitiesGeocode');
->>>>>>> 592701274e107d8816c9d393a5d9c5400182b4c5
 
 /**
  * @api {get} /customer-engagement-pattern Get data for total purchase amount for every day of the week
@@ -250,7 +246,6 @@ router.get('/rev-per-city-by-orderSource', function(req, res) {
 router.get('/test', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-<<<<<<< HEAD
 		orderModel.getOrders().then((success) => {
 			res.status(200).json({
 				status: true,
@@ -265,7 +260,7 @@ router.get('/test', function(req, res) {
 		});
 
 
-=======
+
 		// testObjectMapping.mapIceFreshOrderObjects().then((success) => {
 		// 	res.status(200).json({
 		// 		status: true,
@@ -279,7 +274,7 @@ router.get('/test', function(req, res) {
 		// 	});
 		// });
 		testObject.getCoordinatesForCities();
->>>>>>> 592701274e107d8816c9d393a5d9c5400182b4c5
+
 });
 
 /**
