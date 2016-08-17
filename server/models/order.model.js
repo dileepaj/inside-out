@@ -1,3 +1,4 @@
+//Author : Rifhan
 'use strict';
 
 const mongoose = require('mongoose');
@@ -37,8 +38,21 @@ module.exports.getOrders = function(){
 
     Order.find({},(err,orders)=>{
       if(err){
-        logger.log('error','unable to get orders from MLab database',{stack : err});
-        return reject({status : false});
+        return reject(err);
+      }
+      return resolve(orders);
+    });
+  }); 
+}
+
+module.exports.deleteAllOrders = function(){
+  return new Promise((resolve,reject)=>{
+    let db = mongoose.connection;
+    let Order = mongoose.model('order');
+
+    Order.remove({},(err,orders)=>{
+      if(err){
+        return reject(err);
       }
       return resolve(orders);
     });

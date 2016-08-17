@@ -5,7 +5,12 @@ const api = require('./controllers/api/api');
 const mongoose = require('mongoose');
 const dbConnection = require('./config/mongodb-connection')();
 const mapOrderObject = require('./mappers/mainObjectMapper.icefresh');
+const cronJob = require('cron').CronJob;
+const scheduledJobs = require('./utils/cronjobs');
 
+new cronJob('00 21 15 * * *',()=>{
+  scheduledJobs.runScheduledJobs();
+},null,true,'Asia/Colombo');
 
 app.use('/', express.static('public'));
 app.use('/api', api);
