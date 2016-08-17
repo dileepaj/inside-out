@@ -8,7 +8,7 @@ const mapOrderObject = require('./mappers/mainObjectMapper.icefresh');
 const cronJob = require('cron').CronJob;
 const scheduledJobs = require('./utils/cronjobs');
 
-new cronJob('00 21 15 * * *',()=>{
+new cronJob('00 00 23 * * *',()=>{
   scheduledJobs.runScheduledJobs();
 },null,true,'Asia/Colombo');
 
