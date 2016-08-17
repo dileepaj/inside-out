@@ -2,6 +2,7 @@ import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MetaDataTable from './meta/metaDataTable';
+import CircularProgress from 'material-ui/CircularProgress';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -77,7 +78,7 @@ const NumberOfPurchasesByDay = React.createClass({
 								<MetaDataTable data={this.state.metaData} />
 							</div> 
 						</div>
-					: ''
+					: <CircularProgress size={2} />
 				}
 		    </div>
 		)
