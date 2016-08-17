@@ -1,7 +1,7 @@
 import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import PurchasesByTimeData from './meta/purchasesByTime';
+import MetaDataTable from './meta/metaDataTable';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -10,7 +10,8 @@ const NumberOfPurchasesByDay = React.createClass({
 	getInitialState: function() {
 		return {
 			drawer: false,
-			data: []
+			data: [],
+			metaData: []
 		}
 	},
 
@@ -50,7 +51,7 @@ const NumberOfPurchasesByDay = React.createClass({
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
-								<PurchasesByTimeData /> 
+								<MetaDataTable data={this.state.metaData}/> 
 							</div>
 						</div> : ''
 					}

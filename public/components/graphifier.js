@@ -1,6 +1,5 @@
 import React from 'react';
 import NumberOfPurchasesByDay from './graphs/numberOfPurchasesByDay';
-import NumberOfPurchasesByDayData from './graphs/meta/numberOfPurchasesByDay';
 import CustomerEngagementPattern from './graphs/customerEngagementPattern';
 import PurchasesByTime from './graphs/purchasesByTime';
 import CustomerValuePerCity from './graphs/customerValuePerCity';
