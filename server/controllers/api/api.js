@@ -13,6 +13,7 @@ const testObjectMapping = require('../../mappers/mainObjectMapper.icefresh');
 const testObject = require('.././communication-handler/external.apis');
 const orderModel = require('../../models/order.model');
 const getCitiesGeocode = require('../../business-logic/getCitiesGeocode');
+const cron = require('../../utils/cronjobs');
 
 /**
  * @api {get} /customer-engagement-pattern Get data for total purchase amount for every day of the week
@@ -243,23 +244,36 @@ router.get('/rev-per-city-by-orderSource', function(req, res) {
 
 });
 
-router.get('/test', function(req, res) {
+router.get('/testObject', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-		orderModel.getOrders().then((success) => {
+		// cron.runScheduledJobs().then((success) => {
+		// 	res.status(200).json({
+		// 		status: true,
+		// 		message: success
+		// 	});
+		// },(exception) => {
+		// 	console.log(exception);
+		// 	res.status(500).json({
+		// 		status: false,
+		// 		message: exception
+		// 	});
+		// });
+
+		try {
+			let returnJson = cron.runScheduledJobs();
 			res.status(200).json({
 				status: true,
-				message: success
+				message: returnJson
 			});
-		},(exception) => {
+		}
+		catch(exception) {
 			console.log(exception);
 			res.status(500).json({
 				status: false,
 				message: exception
 			});
-		});
-
-
+		}
 
 		// testObjectMapping.mapIceFreshOrderObjects().then((success) => {
 		// 	res.status(200).json({
@@ -273,7 +287,7 @@ router.get('/test', function(req, res) {
 		// 		message: exception
 		// 	});
 		// });
-		testObject.getCoordinatesForCities();
+		//testObject.getCoordinatesForCities();
 
 });
 
