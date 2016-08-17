@@ -1,9 +1,11 @@
 import React from 'react';
 import NumberOfPurchasesByDay from './graphs/numberOfPurchasesByDay';
+import NumberOfPurchasesByDayData from './graphs/meta/numberOfPurchasesByDay';
 import CustomerEngagementPattern from './graphs/customerEngagementPattern';
 import PurchasesByTime from './graphs/purchasesByTime';
 import CustomerValuePerCity from './graphs/customerValuePerCity';
 import TotalCustomersPerCity from './graphs/totalCustomersPerCity';
+import OrderMap from './graphs/orderMap';
 
 const style = {
 	width: '50%'
@@ -14,24 +16,19 @@ const Graphifier = React.createClass({
 		return (			
 			<div>
 				<div className="row">
-					<div className="col-xl-6 col-lg-6 col-md-6">
-						<NumberOfPurchasesByDay/>
-					</div>
-					<div className="col-xl-6 col-lg-6 col-md-6">
-						<CustomerValuePerCity />
-					</div>
+					<NumberOfPurchasesByDay/>
 				</div>
 				<div className="row">
-					<div className="col-md-12">
-						<PurchasesByTime />
-					</div>
+					<CustomerValuePerCity />
 				</div>
 				<div className="row">
-					<div className="col-md-12">
-						<CustomerEngagementPattern />
-					</div>
-				</div>		
-				<TotalCustomersPerCity />
+					<PurchasesByTime />
+				</div>
+					<CustomerEngagementPattern />
+
+					<TotalCustomersPerCity />
+
+					<OrderMap />
 		    </div>
 		)
 	}

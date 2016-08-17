@@ -39,14 +39,16 @@ const NumberOfPurchasesByDay = React.createClass({
 			<div>
 				
 					{ this.state.data ? 
-						<PieChart
-					      data={this.state.data}
-					      width={450}
-					      height={500} 
-					      radius={200}
-					      innerRadius={75}
-					      sectorBorderColor="white"
-					      title="Pie Chart" />	: ''
+						<Card>
+							<PieChart
+						      data={this.state.data}
+						      width={450}
+						      height={500} 
+						      radius={200}
+						      innerRadius={75}
+						      sectorBorderColor="white"
+						      title="Pie Chart" />
+						</Card>	: ''
 					}
 		    </div>
 		)
