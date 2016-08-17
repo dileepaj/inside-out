@@ -18,7 +18,7 @@ function loadGraph(mappedData) {
     // Set up the chart
     var chart = new Highcharts.Chart({
         chart: {
-            renderTo: 'container',
+            renderTo: 'container-cus-pattern',
             margin: 100,
             type: 'scatter',
             options3d: {
@@ -36,7 +36,7 @@ function loadGraph(mappedData) {
             }
         },
         title: {
-            text: 'Customer engagement pattern'
+            text: ''
         },
         subtitle: {
             text: ''
@@ -147,8 +147,8 @@ const CustomerEngagement = React.createClass({
 
     render: function() {
         return (            
-            <div>
-                    
+            <div id="container-cus-pattern">
+                   
             </div>
         )
     }
