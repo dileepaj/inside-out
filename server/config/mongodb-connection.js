@@ -3,6 +3,7 @@ const connectionDetails = {
 }; 
 const mongoose = require('mongoose');
 const orderSchema = require('../models/order.model');
+const geocodeSchema = require('../models/geocode.model');
 
 module.exports = function(){
     let mongoObject;
@@ -16,5 +17,6 @@ module.exports = function(){
 
 function setModels(){
     mongoose.model('order',orderSchema);
+    mongoose.model('geocode', geocodeSchema);
 }
 
