@@ -224,7 +224,7 @@ router.get('/total-customers-per-city', function(req, res) {
 	}
 }
  */
-router.get('/rev-per-city-by-orderSource', function(req, res) {
+router.get('/rev-per-city-by-ordersource', function(req, res) {
 
 	try {
 		let returnJson = revenuePerCityByOrderSource.revPerCityByOrderSource();
