@@ -28,25 +28,25 @@ function calculateNumberOfPurchasesByDay() {
 		switch (day) {
 			case 0:
 				//sunday
-				returnObj.sunday += Number(item[keyMap.payment]);
+				returnObj.sunday += parseInt(Number(item[keyMap.payment]));
 				break;
 			case 1:
-				returnObj.monday += Number(item[keyMap.payment]);
+				returnObj.monday += parseInt(Number(item[keyMap.payment]));
 				break;
 			case 2:
-				returnObj.tuesday += Number(item[keyMap.payment]);
+				returnObj.tuesday += parseInt(Number(item[keyMap.payment]));
 				break;
 			case 3:
-				returnObj.wednesday += Number(item[keyMap.payment]);
+				returnObj.wednesday += parseInt(Number(item[keyMap.payment]));
 				break;
 			case 4:
-				returnObj.thursday += Number(item[keyMap.payment]);
+				returnObj.thursday += parseInt(Number(item[keyMap.payment]));
 				break;
 			case 5:
-				returnObj.friday += Number(item[keyMap.payment]);
+				returnObj.friday += parseInt(Number(item[keyMap.payment]));
 				break;	
 			case 6:
-				returnObj.saturday += Number(item[keyMap.payment]);
+				returnObj.saturday += parseInt(Number(item[keyMap.payment]));
 				break;
 			default: 
 				logger.log('error', 'Incompatible day value found when calculating number of purchases by day.');
