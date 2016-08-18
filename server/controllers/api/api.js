@@ -11,7 +11,9 @@ const avgAmountSpentPerCity = require('../../business-logic/averageAmountSpentPe
 const revenuePerCityByOrderSource = require('../../business-logic/revenuePerCityByOrderSource');
 const testObjectMapping = require('../../mappers/mainObjectMapper.icefresh');
 const testObject = require('.././communication-handler/external.apis');
+const orderModel = require('../../models/order.model');
 const getCitiesGeocode = require('../../business-logic/getCitiesGeocode');
+const cron = require('../../utils/cronjobs');
 
 /**
  * @api {get} /customer-engagement-pattern Get data for total purchase amount for every day of the week
@@ -121,7 +123,8 @@ router.get('/purchases-by-time', function(req, res) {
 		let returnJson = purchasesByTime.getPurchaseDetails();
 		res.status(200).json({
 			status: true,
-			message: returnJson
+			highestSales : returnJson.highestSales,
+			message: returnJson.message
 		});
 	}catch(exception){
 		res.status(500).json({
@@ -221,7 +224,7 @@ router.get('/total-customers-per-city', function(req, res) {
 	}
 }
  */
-router.get('/rev-per-city-by-orderSource', function(req, res) {
+router.get('/rev-per-city-by-ordersource', function(req, res) {
 
 	try {
 		let returnJson = revenuePerCityByOrderSource.revPerCityByOrderSource();
@@ -241,10 +244,10 @@ router.get('/rev-per-city-by-orderSource', function(req, res) {
 
 });
 
-router.get('/test', function(req, res) {
+router.get('/testObject', function(req, res) {
 
 		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-		// testObjectMapping.mapIceFreshOrderObjects().then((success) => {
+		// cron.runScheduledJobs().then((success) => {
 		// 	res.status(200).json({
 		// 		status: true,
 		// 		message: success
@@ -256,7 +259,25 @@ router.get('/test', function(req, res) {
 		// 		message: exception
 		// 	});
 		// });
-		testObject.getCoordinatesForCities();
+
+		// try {
+		// 	let returnJson = cron.runScheduledJobs();
+		// 	res.status(200).json({
+		// 		status: true,
+		// 		message: returnJson
+		// 	});
+		// }
+		// catch(exception) {
+		// 	console.log(exception);
+		// 	res.status(500).json({
+		// 		status: false,
+		// 		message: exception
+		// 	});
+		// }
+
+		//testObject.getCoordinatesForCities();
+		
+
 });
 
 /**

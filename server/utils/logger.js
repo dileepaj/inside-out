@@ -10,7 +10,7 @@
 	// }));
 
 
-	winston.remove(winston.transports.Console);
+	//winston.remove(winston.transports.Console);
 
 	// let logger = new (winston.Logger)({
 	// 	level: 'error',

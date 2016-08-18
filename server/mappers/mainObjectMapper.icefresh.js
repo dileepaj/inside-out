@@ -1,3 +1,4 @@
+//Author : Rifhan 
 "use strict"
 
 //TODO: else queue as mapping object to a job
@@ -12,9 +13,10 @@ let finalOrdersArray = [];
 module.exports.mapIceFreshOrderObjects = function(){
     return new Promise((resolve,reject) => {
         let db = mongoose.connection;
+        let c = 0;
         let dbInstance = mongoose.model('order');
         iceFreshExternalApi.getAllIcefreshOrders().then((success) => {
-            tempDataDump.map((object) => {
+            success.map((object) => {
                 let tempObject = object; 
                 keyMaps.keysNeededToMap.map((value) => {
                     try{
@@ -23,6 +25,8 @@ module.exports.mapIceFreshOrderObjects = function(){
                             dbObject.save(function (err,product,numAffected){
                                 if(!err){
                                     finalOrdersArray.push(tempObject);
+                                    c++;
+                                    console.log(c);
                                 }         
                             }); 
                         }else{
@@ -34,6 +38,8 @@ module.exports.mapIceFreshOrderObjects = function(){
                             dbObject.save(function (err,product,numAffected){
                                 if(!err){
                                     finalOrdersArray.push(tempObject);
+                                    c++;
+                                    console.log(c);                               
                                 }            
                             }); 
                         }   

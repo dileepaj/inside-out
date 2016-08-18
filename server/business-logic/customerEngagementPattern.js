@@ -46,13 +46,28 @@ module.exports.purchasePatternResults = function(){
         filteredCustomerData = _.reject(customer,(value) => {
             if(value.totalPurchases == 1){
                 countOneTimePurchase += 1;
-            } 
+            }
+            
             return value.totalPurchases <= 2  
         });
-        return calculateTimeGap({
+        
+
+        let finalValues = calculateTimeGap({
             message : filteredCustomerData, 
             retention : parseInt(countOneTimePurchase/totalCustomers * 100 )
         });
+        let topCustomers = _.chain(finalValues.message).sortBy((value)=>{return value.totalAmount})
+        .last(50)
+        .sortBy((value)=>{return value.cummulativeConsistency})
+        .first(10).value();
+
+        console.log(topCustomers);
+        finalValues.message.map((value) =>{
+            delete value.cummulativeConsistency;
+        });
+        finalValues["topCustomers"] = topCustomers;
+        return finalValues;
+        
     }catch(exception){
         console.log(exception);
         throw "unable to process data at this time";
@@ -99,7 +114,10 @@ function calculateSTDdeviation(purchaseData){
         variance = (total/(purchaseData.tempGaps.length - 1));
         //standard deviation = sqrt(variance)
         purchaseData.consistency = Math.sqrt(variance); 
-
+        // if(purchaseData.consistency === null || purchaseData.averageGap === null){
+            
+        // }
+        purchaseData["cummulativeConsistency"] = purchaseData.consistency + purchaseData.averageGap;
         delete purchaseData["tempGaps"];
         delete purchaseData["purchaseDates"];
         delete purchaseData["totalPurchases"];
