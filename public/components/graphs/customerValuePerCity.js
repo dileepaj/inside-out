@@ -1,6 +1,7 @@
 import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import 'whatwg-fetch';
 
 const PieChart = rd3.PieChart;
@@ -42,6 +43,8 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
+									<h2> Customer value per city </h2>
+									<Divider/>
 									<PieChart
 								      data={this.state.data}
 								      width={450}

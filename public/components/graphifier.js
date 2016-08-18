@@ -12,23 +12,20 @@ const style = {
 }
 
 const Graphifier = React.createClass({
+	
 	render: function() {
 		return (			
 			<div style={style}>
 				<div className="row">
-					<h2> Number of Purchases by day </h2>
 					<NumberOfPurchasesByDay/>
 				</div>
 				<div className="row">
-					<h2> Customer value per city </h2>
 					<CustomerValuePerCity />
 				</div>
 				<div className="row">
-					<h2> Purchases by time </h2>
 					<PurchasesByTime />
 				</div>
 				<div className="row">
-					<h2> Total customers per city </h2>
 					<TotalCustomersPerCity />
 				</div>
 				<div className="row">

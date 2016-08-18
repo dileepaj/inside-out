@@ -3,6 +3,7 @@ import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MetaDataTable from './meta/metaDataTable';
 import CircularProgress from 'material-ui/CircularProgress';
+import Divider from 'material-ui/Divider';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -64,6 +65,8 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
+									<h2> Number of Purchases by day </h2>
+									<Divider />
 									<BarChart
 									  data={this.state.data}
 									  width={750}

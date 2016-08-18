@@ -1,7 +1,9 @@
 import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import Toggle from 'material-ui/Toggle';
 import loadGraph from './meta/customerEngagementPatternMeta';
+import CustomerEngagementGrowth from './meta/customerEngagementGrowth';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -9,7 +11,8 @@ const BarChart = rd3.BarChart;
 const CustomerEngagement = React.createClass({
     getInitialState: function() {
         return {
-            data: []
+            data: [],
+            expanded: false
         }
     },
 
@@ -34,14 +37,32 @@ const CustomerEngagement = React.createClass({
           });
     },
 
+    handleExpandChange: function() {
+        this.setState({
+            expanded: expanded
+        });
+    },
+
     componentWillUnmount: function() {
 
     },
 
     render: function() {
-        return (            
-            <div id="container-cus-pattern">
-                   
+        return (   
+            <div>
+                <Card onExpandChange={this.handleExpandChange}>
+                    <CardHeader
+                      title=""
+                      actAsExpander={true}
+                      showExpandableButton={true}
+                    />
+                    <CardText expandable={true}>
+                      <CustomerEngagementGrowth />
+                    </CardText>
+                    <div id="container-cus-pattern">
+                               
+                    </div>
+                </Card>
             </div>
         )
     }
