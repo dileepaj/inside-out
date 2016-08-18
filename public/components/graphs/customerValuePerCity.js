@@ -10,6 +10,14 @@ const style = {
 	width: '50%'
 }
 
+const pieChart = {
+	marginLeft: '250'
+}
+
+const container = {
+	marginTop: '25'
+}
+
 const NumberOfPurchasesByDay = React.createClass({
 	getInitialState: function() {
 		return {
@@ -40,19 +48,23 @@ const NumberOfPurchasesByDay = React.createClass({
 			<div>
 				{ 
 					this.state.data ?
-						<div>
+						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
-									<h2> Customer value per city </h2>
-									<Divider/>
-									<PieChart
-								      data={this.state.data}
-								      width={450}
-								      height={500} 
-								      radius={200}
-								      innerRadius={75}
-								      sectorBorderColor="white"
-								      title="" />
+									<CardText>
+										<h2> Customer value per city </h2>
+										<Divider/>
+										<div style={pieChart}>
+											<PieChart
+										      data={this.state.data}
+										      width={450}
+										      height={500} 
+										      radius={200}
+										      innerRadius={75}
+										      sectorBorderColor="white"
+										      title="" />
+									    </div>
+								    </CardText>
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">

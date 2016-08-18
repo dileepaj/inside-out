@@ -8,6 +8,10 @@ import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
 
+const container = {
+	marginTop: '25'
+}
+
 const NumberOfPurchasesByDay = React.createClass({
 	getInitialState: function() {
 		return {
@@ -62,19 +66,21 @@ const NumberOfPurchasesByDay = React.createClass({
 			<div>
 				{ 
 					this.state.data ?
-						<div>
+						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
-									<h2> Number of Purchases by day </h2>
-									<Divider />
-									<BarChart
-									  data={this.state.data}
-									  width={750}
-									  height={300}
-									  title=""
-									  xAxisLabel="Days"
-									  yAxisLabel="No of purchases"
-									/>
+									<CardText>
+										<h2> Number of Purchases by day </h2>
+										<Divider />
+										<BarChart
+										  data={this.state.data}
+										  width={750}
+										  height={300}
+										  title=""
+										  xAxisLabel="Days"
+										  yAxisLabel="No of purchases"
+										/>
+									</CardText>
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
