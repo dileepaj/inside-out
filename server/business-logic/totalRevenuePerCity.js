@@ -16,7 +16,7 @@ module.exports.calculateRevenuePerCity = function(){
 				return {'label':key,'value' :totalPayments};
 			})
 			.reject(function (value) {
-				return (value.value < 6000 || value.label ==='undefined')
+				return (value.value < 10000 || value.label ==='undefined')
 			})
 			.value();
 
