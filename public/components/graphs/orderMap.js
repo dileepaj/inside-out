@@ -93,14 +93,9 @@ const orderMap = React.createClass({
 					    height= {height}
 					    scale= {scale}
 					    center= {center}
-					  >
-					    <MarkerGroup
-					      key= {"polygon-test"}
-					      data= {data}
-					      popupContent= {popupContent}
-					      markerClass= {"your-marker-css-class"}
-					    />
-					</Map>
+					    zoomScale= {this.state.scale}
+					/>
+					 
 					<ZoomControl
 			            zoomInClick={zoomIn}
 			            zoomOutClick={zoomOut}

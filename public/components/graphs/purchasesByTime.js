@@ -1,7 +1,8 @@
 import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import MetaDataTable from './meta/metaDataTable';
+import PurchasesByTimeMeta from './meta/purchasesByTimeMeta';
+import Divider from 'material-ui/Divider';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -23,6 +24,10 @@ const NumberOfPurchasesByDay = React.createClass({
 		  }).then(function(json) {
 		    console.log('parsed json', json);
 		    let data = json.message;
+		    let metaData = json.highestSales;
+		    context.setState({
+		    	metaData: metaData
+		    });
 		    context.setState({
 				data: data
 			});
@@ -40,18 +45,20 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
+								<h2> Purchases by time </h2>
+								<Divider />
 									<BarChart
 									  data={this.state.data}
 									  width={1000}
 									  height={300}
-									  title="Bar Chart"
+									  title=""
 									  xAxisLabel="Time period"
 									  yAxisLabel="Purchased amount"
 									/>
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
-								<MetaDataTable data={this.state.metaData}/> 
+								<PurchasesByTimeMeta data={this.state.metaData}/> 
 							</div>
 						</div> : ''
 					}
