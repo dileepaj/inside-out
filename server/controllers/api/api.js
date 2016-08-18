@@ -260,34 +260,23 @@ router.get('/testObject', function(req, res) {
 		// 	});
 		// });
 
-		try {
-			let returnJson = cron.runScheduledJobs();
-			res.status(200).json({
-				status: true,
-				message: returnJson
-			});
-		}
-		catch(exception) {
-			console.log(exception);
-			res.status(500).json({
-				status: false,
-				message: exception
-			});
-		}
-
-		// testObjectMapping.mapIceFreshOrderObjects().then((success) => {
+		// try {
+		// 	let returnJson = cron.runScheduledJobs();
 		// 	res.status(200).json({
 		// 		status: true,
-		// 		message: success
+		// 		message: returnJson
 		// 	});
-		// },(exception) => {
+		// }
+		// catch(exception) {
 		// 	console.log(exception);
 		// 	res.status(500).json({
 		// 		status: false,
 		// 		message: exception
 		// 	});
-		// });
+		// }
+
 		//testObject.getCoordinatesForCities();
+		
 
 });
 
