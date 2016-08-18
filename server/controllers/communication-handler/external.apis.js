@@ -41,10 +41,10 @@ function getCoordinatesForCities() {
                                         console.log(geocode);
                                         return new Promise(function(resolve, reject) {
                                             if(typeof geocode !== 'undefined') {
+                                                //add the co-ordinates for the cities to the db
                                                 let dbObject = new dbInstance(geocode);
-                                                dbObject.save(function (err, product, numAffected){
+                                                dbObject.save(function (err, product, numAffected) {
                                                     if(!err){
-                                                        //finalOrdersArray.push(tempObject);
                                                         resolve();
                                                     }         
                                                     else {
@@ -65,8 +65,6 @@ function getCoordinatesForCities() {
                 .catch(function(err) {
                     console.log(err);
                 });
-
-            //add the co-ordinates for the cities to the db
         });
 }
 
@@ -104,9 +102,7 @@ function getGeocodesForCity(city) {
                 else {
                     resolve();
                 }
-                
             });
-
         }).on('error', e => {
             console.error(e);
             reject(e);
