@@ -36,7 +36,7 @@ var scaleExtent = [1 << 12, 1 << 13];
 // set your center point
 	
 const orderMapStyle = {
-	marginTop: 50
+	marginTop: 100,
 }
 
 var popupContent = function(d) { return d.properties.text; };

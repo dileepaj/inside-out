@@ -49,16 +49,21 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
+									<h2> </h2>
+										<CardHeader
+                      title="Purchase By Time"
+                      actAsExpander={false}
+                      showExpandableButton={false}
+                    />
+										<Divider/>
 									<CardText>
-										<h2> Purchases by time </h2>
-										<Divider />
 											<BarChart
 											  data={this.state.data}
 											  width={1000}
 											  height={300}
 											  title=""
-											  xAxisLabel="Time period"
-											  yAxisLabel="Purchased amount"
+											  xAxisLabel="Time period (24 Hr Format)"
+											  yAxisLabel="Purchase Amount"
 											/>
 									</CardText>
 								</Card>

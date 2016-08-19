@@ -51,9 +51,14 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
+									<h2> </h2>
+										<CardHeader
+                      title="Highest Valued Cities"
+                      actAsExpander={false}
+                      showExpandableButton={false}
+                    />
+										<Divider/>
 									<CardText>
-										<h2> Highest valued cities </h2>
-										<Divider />
 										<div style={pieChart}>
 											<PieChart
 										      data={this.state.data}

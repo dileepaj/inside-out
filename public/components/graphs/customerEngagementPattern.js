@@ -66,14 +66,13 @@ const CustomerEngagement = React.createClass({
         return (   
             <div className="col-md-12 col-lg-12 col-xl-12">
                 <Card onExpandChange={this.handleExpandChange}>
-                    <h2> Customer engagement pattern </h2>
-                    <Divider />
+                    <h2>  </h2>
                     <CardHeader
-                      title=""
+                      title="Consumer Trust Index"
                       actAsExpander={true}
                       showExpandableButton={true}
                     />
-                   
+                    <Divider />
                     <CardText expandable={true}>
                       <CustomerEngagementGrowth />
                     </CardText>

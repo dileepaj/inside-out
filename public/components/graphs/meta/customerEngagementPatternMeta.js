@@ -35,7 +35,7 @@ const loadGraph = function(mappedData,retentionRate) {
             }
         },
         title: {
-            text: 'Customer Retention Rate'
+            text: 'Consumer Retention Rate'
         },
         subtitle: {
             text: `${retentionRate}`
