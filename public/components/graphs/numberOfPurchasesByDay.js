@@ -4,6 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import MetaDataTable from './meta/metaDataTable';
 import CircularProgress from 'material-ui/CircularProgress';
 import Divider from 'material-ui/Divider';
+import metaStyle from './meta/style';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -88,7 +89,7 @@ const NumberOfPurchasesByDay = React.createClass({
 									</CardText>
 								</Card>
 							</div>
-							<div className="col-md-3 col-lg-3 col-xl-3">
+							<div style={metaStyle} className="col-md-3 col-lg-3 col-xl-3">
 								<MetaDataTable data={this.state.metaData} />
 							</div> 
 						</div>

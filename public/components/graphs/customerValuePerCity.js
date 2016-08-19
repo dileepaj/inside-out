@@ -2,6 +2,7 @@ import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
+import metaStyle from './meta/style';
 import 'whatwg-fetch';
 
 const PieChart = rd3.PieChart;
@@ -72,7 +73,7 @@ const NumberOfPurchasesByDay = React.createClass({
 								    </CardText>
 								</Card>
 							</div>
-							<div className="col-md-3 col-lg-3 col-xl-3">
+							<div style={metaStyle} className="col-md-3 col-lg-3 col-xl-3">
 								<Card>
 								<CardText>
 									<h4>Description</h4>

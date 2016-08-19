@@ -3,6 +3,7 @@ import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import PurchasesByTimeMeta from './meta/purchasesByTimeMeta';
 import Divider from 'material-ui/Divider';
+import metaStyle from './meta/style';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -68,7 +69,7 @@ const NumberOfPurchasesByDay = React.createClass({
 									</CardText>
 								</Card>
 							</div>
-							<div className="col-md-3 col-lg-3 col-xl-3">
+							<div style={metaStyle} className="col-md-3 col-lg-3 col-xl-3">
 								<PurchasesByTimeMeta data={this.state.metaData}/> 
 							</div>
 						</div> : ''
