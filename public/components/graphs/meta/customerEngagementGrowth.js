@@ -2,7 +2,7 @@ import React from 'react';
 import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import CircularProgress from 'material-ui/CircularProgress';
+import CircularProgress	 from 'material-ui/CircularProgress';
 import Dialog from 'material-ui/Dialog';
 import 'whatwg-fetch';
 
