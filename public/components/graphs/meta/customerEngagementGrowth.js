@@ -28,7 +28,34 @@ const lineData = [
       }
 ];
 
-const names = ['tom', 'stewy', 'peter', 'brian', 'batman', 'superman', 'flash', 'captain america'];
+const names = ['沈甜', '任瑞凤', '牧先生', '金石', '闫晓薇', '王燕', '嵇永庆', '刘瑾','Matt Hendrick','李鑫'];
+const addresses = ['松山湖管委会松山湖工业北三路华为南方公寓南区18A804','汉中路218号B座1503室','广安门外街道广外太平里10号楼四单元604室',
+'松山湖管委会松山湖工业北三路华为南方公寓南区18A804','广安门外街道广外太平里10号楼四单元604室','阳明街道金型西路1001号余姚市运政稽查大队',
+'五角场街道上海市杨浦区国庠路28号中经堂', '稠城街道义乌市第四中学','阳明街道金型西路1001号余姚市运政稽查大队','天平路街道复兴中路1295弄22号2楼' ];
+
+const rowObjects = [
+	{
+		name : '沈甜',
+		address : '松山湖管委会松山湖工业北三路华为南方公寓南区18A804'
+	},
+	{
+		name : '任瑞凤',
+		address : '汉中路218号B座1503室'
+	},
+		{
+		name : '牧先生',
+		address : '广安门外街道广外太平里10号楼四单元604室'
+	},
+		{
+		name : 'Matt Hendrick',
+		address : '阳明街道金型西路1001号余姚市运政稽查大队'
+	},
+		{
+		name : '金石',
+		address : '阳明街道金型西路1001号余姚市运政稽查大队'
+	}
+
+]
 
 const CustomerEngagementGrowth = React.createClass({
 	getInitialState: function() {
@@ -36,55 +63,21 @@ const CustomerEngagementGrowth = React.createClass({
 			drawer: false,
 			data: [],
 			names: [],
-			lineData: []
+			lineData: [],
+			addresses : []
 		}
 	},
 
 	componentDidMount: function() {
-		this.setState({
-			lineData: dataObj
-		});
-		let context = this;
-		fetch('/api/purchases-by-days')
-		  .then(function(response) {
-		    return response.json()
-		  }).then(function(json) {
-		    let data = json.message;
-		    let mappedData = [];
-		    let xAxis = 1;
-		    let values = [];
-		    let metaValues = [];
-		    for(var value in data) {
-		    	values.push(
-		    		{ "x": value, "y": data[value] }
-		    	);
-		    	metaValues.push(data[value]);
-		    	xAxis += 1;
-		    }
-
-		    mappedData = {
-		    	name: "service A",
-		    	values: values
-		    }
-
-		    let purchaseData = [];
-		    purchaseData.push(mappedData);
-
-		    context.setState({
-				data: purchaseData,
-				names: names
-			});
-		    return mappedData;
-		  }).catch(function(ex) {
-		    console.log('parsing failed', ex)
-		  });
+		
 	},
 
 	renderTable: function() {
-	    return this.state.names.map(function(data) {
+	    return rowObjects.map(function(data) {
 	      return (
 	        <TableRow>
-	          <TableRowColumn>{ data }</TableRowColumn>
+	          <TableRowColumn>{ data.name }</TableRowColumn>
+						<TableRowColumn>{ data.address }</TableRowColumn>
 	        </TableRow>
 	      );
 	    });
@@ -132,11 +125,13 @@ const CustomerEngagementGrowth = React.createClass({
 							  <Table selectable={true} onRowSelection={this._changeGraph}>
 							    <TableHeader displaySelectAll={false}>
 							      <TableRow>
-							        <TableHeaderColumn>Customer</TableHeaderColumn>
+							        <TableHeaderColumn>Customer Name</TableHeaderColumn>
+											<TableHeaderColumn>Address</TableHeaderColumn>
 							      </TableRow>
 							    </TableHeader>
 							    <TableBody displayRowCheckbox={false}>
 							    	{ this.state.names ? this.renderTable() : '' }
+										{ this.state.addresses ? this.renderTable() : '' }
 							    </TableBody>
 							  </Table>
 							</div>
