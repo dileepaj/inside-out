@@ -3,6 +3,7 @@ import NumberOfPurchasesByDay from './graphs/numberOfPurchasesByDay';
 import CustomerEngagementPattern from './graphs/customerEngagementPattern';
 import PurchasesByTime from './graphs/purchasesByTime';
 import CustomerValuePerCity from './graphs/customerValuePerCity';
+import PaintPointReview from './graphs/paintPointReview';
 import TotalCustomersPerCity from './graphs/totalCustomersPerCity';
 import OrderMap from './graphs/orderMap';
 
@@ -21,6 +22,9 @@ const Graphifier = React.createClass({
 				</div>
 				<div className="row">
 					<CustomerValuePerCity />
+				</div>
+				<div className="row">
+					<PaintPointReview />
 				</div>
 				<div className="row">
 					<PurchasesByTime />

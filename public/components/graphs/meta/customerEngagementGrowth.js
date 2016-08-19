@@ -163,7 +163,7 @@ const CustomerEngagementGrowth = React.createClass({
 							    <TableHeader displaySelectAll={false}>
 							      <TableRow>
 							        <TableHeaderColumn>Customer Name</TableHeaderColumn>
-											<TableHeaderColumn>Address</TableHeaderColumn>
+									<TableHeaderColumn>Address</TableHeaderColumn>
 							      </TableRow>
 							    </TableHeader>
 							    <TableBody displayRowCheckbox={false}>
