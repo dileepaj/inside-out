@@ -4,6 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import Toggle from 'material-ui/Toggle';
 import loadGraph from './meta/customerEngagementPatternMeta';
 import CustomerEngagementGrowth from './meta/customerEngagementGrowth';
+import Divider from 'material-ui/Divider';
 import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
@@ -51,6 +52,8 @@ const CustomerEngagement = React.createClass({
         return (   
             <div>
                 <Card onExpandChange={this.handleExpandChange}>
+                    <h2> Customer engagement pattern </h2>
+                    <Divider />
                     <CardHeader
                       title=""
                       actAsExpander={true}

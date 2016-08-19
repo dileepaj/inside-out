@@ -7,7 +7,7 @@ import TotalCustomersPerCity from './graphs/totalCustomersPerCity';
 import OrderMap from './graphs/orderMap';
 
 const style = {
-	marginTop: '50',
+	marginTop: '80',
 	marginLeft: '20'
 }
 
@@ -29,7 +29,6 @@ const Graphifier = React.createClass({
 					<TotalCustomersPerCity />
 				</div>
 				<div className="row">
-					<h2> Customer engagement pattern </h2>
 					<CustomerEngagementPattern />
 				</div>
 				<div className="row">
