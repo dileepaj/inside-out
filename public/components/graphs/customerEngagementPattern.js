@@ -35,9 +35,9 @@ const CustomerEngagement = React.createClass({
           }).then(function(json) {
             let data = json.message;
             let retention = 100 - json.retention + '%';
-            context.setState({
-                retention: retention
-            });
+            // context.setState({
+            //     retention: retention
+            // });
             for(var value in data) {
                 let totalAmount = data[value]['totalAmount'];
                 let averageGap = data[value]['averageGap'];
@@ -45,15 +45,16 @@ const CustomerEngagement = React.createClass({
                 let arr = [totalAmount, averageGap, consistency];
                 mappedData.push(arr);
             }
-            loadGraph(mappedData);
+            loadGraph(mappedData,retention);
           }).catch(function(ex) {
             console.log('parsing failed', ex)
           });
     },
 
     handleExpandChange: function() {
+        //document.getElementById('container-cus-pattern').style.display = 'none';
         this.setState({
-            expanded: expanded
+            expanded: !this.state.expanded
         });
     },
 
@@ -63,7 +64,7 @@ const CustomerEngagement = React.createClass({
 
     render: function() {
         return (   
-            <div>
+            <div className="col-md-12 col-lg-12 col-xl-12">
                 <Card onExpandChange={this.handleExpandChange}>
                     <h2> Customer engagement pattern </h2>
                     <Divider />
@@ -72,7 +73,7 @@ const CustomerEngagement = React.createClass({
                       actAsExpander={true}
                       showExpandableButton={true}
                     />
-                    <span style={spanStyle}> Customer retention rate <span style={retentionRate}>{ this.state.retention }</span> </span>
+                   
                     <CardText expandable={true}>
                       <CustomerEngagementGrowth />
                     </CardText>

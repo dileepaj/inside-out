@@ -35,6 +35,10 @@ var center = [31.2304, 121.4737];
 var scaleExtent = [1 << 12, 1 << 13];
 // set your center point
 	
+const orderMapStyle = {
+	marginTop: 50
+}
+
 var popupContent = function(d) { return d.properties.text; };
 
 const orderMap = React.createClass({
@@ -86,9 +90,10 @@ const orderMap = React.createClass({
 	    }
 
 		return (			
-			<div style={styleContainer}>
-
-					<iframe src="https://www.google.com/maps/d/embed?mid=1OVp5OzHA6ovTN1j1Adl3hHMxrjg" width="640" height="480"></iframe>		    </div>
+			<div style={orderMapStyle} className="col-md-12 col-lg-12 col-xl-12 col-xl-12 ">
+					
+					<iframe  src="https://www.google.com/maps/d/embed?mid=1OVp5OzHA6ovTN1j1Adl3hHMxrjg" width="1280" height="500"></iframe>		    
+		  </div>
 		)
 	}
 });

@@ -68,7 +68,7 @@ const NumberOfPurchasesByDay = React.createClass({
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
-						
+								sadnsand
 							</div>
 						</div>
 					: ''

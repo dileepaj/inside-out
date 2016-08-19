@@ -32,7 +32,6 @@ const Graphifier = React.createClass({
 					<CustomerEngagementPattern />
 				</div>
 				<div className="row">
-					<h2> Orders map </h2>
 					<OrderMap />
 				</div>
 		    </div>
