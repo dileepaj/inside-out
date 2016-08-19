@@ -18,7 +18,7 @@ const MetaDataTable = React.createClass({
 
   render: function() {
     return (
-      <Table selectable={false} >
+      <Table selectable={false}>
         <TableHeader displaySelectAll={false}>
           <TableRow>
             <TableHeaderColumn>Day</TableHeaderColumn>
