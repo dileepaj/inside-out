@@ -11,8 +11,8 @@ const style = {
 	width: '50%'
 }
 
-const pieChartStyle = {
-	marginLeft: '50'
+const pieChart = {
+	marginLeft: '250'
 }
 
 const container = {
@@ -50,11 +50,11 @@ const NumberOfPurchasesByDay = React.createClass({
 					this.state.data ? 
 						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
-								<Card style={style}>
+								<Card>
 									<CardText>
 										<h2> Highest valued cities </h2>
 										<Divider />
-										<div style={pieChartStyle}>
+										<div style={pieChart}>
 											<PieChart
 										      data={this.state.data}
 										      width={450}
