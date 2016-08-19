@@ -10,35 +10,38 @@ const LineChart = rd3.LineChart;
 
 const dataObj1 = [
   {
-	name: 'series2',
-		strokeWidth: 3,
-	values : [ { x: 0, y: 0.3 }, { x: 1, y: 0.5 }, { x: 2, y: 0.1 }, { x: 3, y: 0.7 }, { x: 4, y: 0.9 }, { x: 5, y: 0.6 }, { x: 6, y: 0.2 } ]
+	name: '',
+	values : [ { x: 0, y: 0.3 }, { x: 1, y: 0.5 }, { x: 2, y: 0.1 }, { x: 3, y: 0.7 }, { x: 4, y: 0.9 }, { x: 5, y: 0.6 }, { x: 6, y: 0.2 } ],
+	strokeWidth: 3,
+	strokeDashArray: "5,5",
   },
 ];
 
 const dataObj2 = [
   {
-	name: 'series2',
-		strokeWidth: 3,
-	values : [ { x: 0, y: 0.8 }, { x: 1, y: 0.5 }, { x: 2, y: 0.3 }, { x: 3, y: 0.6 }, { x: 4, y: 0.4 }, { x: 5, y: 0.2 }, { x: 6, y: 0.9 } ]
+	name: '',
+	values : [ { x: 0, y: 0.8 }, { x: 1, y: 0.5 }, { x: 2, y: 0.3 }, { x: 3, y: 0.6 }, { x: 4, y: 0.4 }, { x: 5, y: 0.2 }, { x: 6, y: 0.9 } ],
+	strokeWidth: 3,
+	strokeDashArray: "5,5",
   },
 ];
 
 const dataObj3 = [
   {
-	name: 'series2',
-		strokeWidth: 3,
-	values : [ { x: 0, y: 0.8 }, { x: 1, y: 0.5 }, { x: 2, y: 0.4 }, { x: 3, y: 0.7 }, { x: 4, y: 0.4 }, { x: 5, y: 0.6 }, { x: 6, y: 0.2 } ]
+	name: '',
+	values : [ { x: 0, y: 0.8 }, { x: 1, y: 0.5 }, { x: 2, y: 0.4 }, { x: 3, y: 0.7 }, { x: 4, y: 0.4 }, { x: 5, y: 0.6 }, { x: 6, y: 0.2 } ],
+	strokeWidth: 3,
+	strokeDashArray: "5,5",
   },
 ];
 
-const dataObj5 = [
+const dataObj4 = [
   { 
-		name: 'series1',
-		values: [ { x: 0, y: 0.3 }, { x: 1, y: 0.5 }, { x: 2, y: 0.2 }, { x: 3, y: 0.9 }, { x: 4, y: 1 }, { x: 5, y: 0.8 }, { x: 6, y: 0.8 } ],
-		strokeWidth: 3,
-		strokeDashArray: "5,5",
-	}
+	name: '',
+	values: [ { x: 0, y: 0.3 }, { x: 1, y: 0.5 }, { x: 2, y: 0.2 }, { x: 3, y: 0.9 }, { x: 4, y: 1 }, { x: 5, y: 0.8 }, { x: 6, y: 0.8 } ],
+	strokeWidth: 3,
+	strokeDashArray: "5,5",
+  }
 ];
 
 // const dataObj6 = [
@@ -49,13 +52,13 @@ const dataObj5 = [
 // ];
 
 const apps =   {
-    name: 'series3',
+    name: '',
     values: [ { x: 0, y: 0 }, { x: 1, y: 5 }, { x: 2, y: 8 }, { x: 3, y: 2 }, { x: 4, y: 6 }, { x: 5, y: 4 }, { x: 6, y: 2 } ]
 };
 
 const lineData = [
       { 
-        name: 'series1',
+        name: '',
         values: [ { x: 0, y: 20 }, { x: 1, y: 30 }, { x: 2, y: 10 }, { x: 3, y: 5 }, { x: 4, y: 8 }, { x: 5, y: 15 }, { x: 6, y: 10 } ],
         strokeWidth: 3,
         strokeDashArray: "5,5",
@@ -91,8 +94,6 @@ const rowObjects = [
 
 ]
 
-let count = 1;
-
 const CustomerEngagementGrowth = React.createClass({
 	getInitialState: function() {
 		return {
@@ -120,10 +121,19 @@ const CustomerEngagementGrowth = React.createClass({
 	},
 
 	_changeGraph: function() {
-		count++;
-		this.setState({
-			lineData: 'dataObj' + count.toString()
-		});
+		if(this.state.lineData == dataObj1) {
+			this.setState({
+				lineData: dataObj2
+			});
+		} else if(this.state.lineData == dataObj2) {
+			this.setState({
+				lineData: dataObj3
+			});
+		} else if(this.state.lineData == dataObj3) {
+			this.setState({
+				lineData: dataObj4
+			});
+		}
 		this.forceUpdate();
 	},
 
@@ -153,7 +163,7 @@ const CustomerEngagementGrowth = React.createClass({
 								        title=""
 								        yAxisLabel="Growth"
 								        xAxisLabel="Month"
-								        domain={{x: [,6], y: [-10,]}}
+								        domain={{x: [0,6], y: [0,3]}}
 								        gridHorizontal={true}
 								    />
 								</Card>
