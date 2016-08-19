@@ -22,7 +22,7 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: cyan500,
+    textColor: '#1A237E',
     primary1Color: '#F57C00'
   },
   appBar: {
