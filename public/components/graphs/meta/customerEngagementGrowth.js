@@ -3,6 +3,7 @@ import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import CircularProgress from 'material-ui/CircularProgress';
+import Dialog from 'material-ui/Dialog';
 import 'whatwg-fetch';
 
 const LineChart = rd3.LineChart;
@@ -63,7 +64,7 @@ const CustomerEngagementGrowth = React.createClass({
 			drawer: false,
 			data: [],
 			names: [],
-			lineData: [],
+			lineData: dataObj,
 			addresses : []
 		}
 	},
@@ -130,8 +131,7 @@ const CustomerEngagementGrowth = React.createClass({
 							      </TableRow>
 							    </TableHeader>
 							    <TableBody displayRowCheckbox={false}>
-							    	{ this.state.names ? this.renderTable() : '' }
-										{ this.state.addresses ? this.renderTable() : '' }
+							    	{ this.renderTable() }								
 							    </TableBody>
 							  </Table>
 							</div>
