@@ -71,7 +71,7 @@ const NumberOfPurchasesByDay = React.createClass({
 								<Card>
 									<h2> </h2>
 										<CardHeader
-                      title="Purchases By Day"
+                      title="Purchase By Day"
                       actAsExpander={false}
                       showExpandableButton={false}
                     />

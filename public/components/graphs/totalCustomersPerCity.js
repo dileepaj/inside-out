@@ -73,6 +73,16 @@ const NumberOfPurchasesByDay = React.createClass({
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
+								<Card>
+								<CardText>
+									<h4>Description</h4>
+									The Highest valued cities chart is generated considering overall online purchasing patterns of consumers in those respective 
+									Cities.
+								</CardText>
+								</Card>
+								<p></p>
+							</div>
+							<div className="col-md-3 col-lg-3 col-xl-3">
 								<TotalCustomersPerCityMeta data={this.state.data} />
 							</div> 
 						</div>
