@@ -9,11 +9,20 @@ import 'whatwg-fetch';
 
 const BarChart = rd3.BarChart;
 
+const spanStyle = {
+    fontSize: 18
+}
+
+const retentionRate = {
+    color: 'black'
+}
+
 const CustomerEngagement = React.createClass({
     getInitialState: function() {
         return {
             data: [],
-            expanded: false
+            expanded: false,
+            retention: 0
         }
     },
 
@@ -25,6 +34,10 @@ const CustomerEngagement = React.createClass({
             return response.json()
           }).then(function(json) {
             let data = json.message;
+            let retention = 100 - json.retention + '%';
+            context.setState({
+                retention: retention
+            });
             for(var value in data) {
                 let totalAmount = data[value]['totalAmount'];
                 let averageGap = data[value]['averageGap'];
@@ -59,6 +72,7 @@ const CustomerEngagement = React.createClass({
                       actAsExpander={true}
                       showExpandableButton={true}
                     />
+                    <span style={spanStyle}> Customer retention rate <span style={retentionRate}>{ this.state.retention }</span> </span>
                     <CardText expandable={true}>
                       <CustomerEngagementGrowth />
                     </CardText>

@@ -8,12 +8,42 @@ import 'whatwg-fetch';
 
 const LineChart = rd3.LineChart;
 
-const dataObj = [
+const dataObj1 = [
   {
 	name: 'series2',
 	values : [ { x: 0, y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ]
   },
 ];
+
+const dataObj2 = [
+  {
+	name: 'series2',
+	values : [ { x: 0, y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ]
+  },
+];
+
+const dataObj3 = [
+  {
+	name: 'series2',
+	values : [ { x: 0, y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ]
+  },
+];
+
+const dataObj5 = [
+  { 
+		name: 'series1',
+		values: [ { x: 0, y: 20 }, { x: 1, y: 30 }, { x: 2, y: 10 }, { x: 3, y: 5 }, { x: 4, y: 8 }, { x: 5, y: 15 }, { x: 6, y: 10 } ],
+		strokeWidth: 3,
+		strokeDashArray: "5,5",
+	}
+];
+
+// const dataObj6 = [
+//   {
+// 	name: 'series2',
+// 	values : [ { x: 0, y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ]
+//   },
+// ];
 
 const apps =   {
     name: 'series3',
@@ -58,13 +88,15 @@ const rowObjects = [
 
 ]
 
+let count = 1;
+
 const CustomerEngagementGrowth = React.createClass({
 	getInitialState: function() {
 		return {
 			drawer: false,
 			data: [],
 			names: [],
-			lineData: dataObj,
+			lineData: dataObj1,
 			addresses : []
 		}
 	},
@@ -85,8 +117,9 @@ const CustomerEngagementGrowth = React.createClass({
 	},
 
 	_changeGraph: function() {
+		count++;
 		this.setState({
-			lineData: lineData
+			lineData: 'dataObj' + count.toString()
 		});
 		this.forceUpdate();
 	},
