@@ -246,19 +246,19 @@ router.get('/rev-per-city-by-ordersource', function(req, res) {
 
 router.get('/testObject', function(req, res) {
 
-		//  let returnJson = testObjectMapping.mapIceFreshOrderObjects();
-		// cron.runScheduledJobs().then((success) => {
-		// 	res.status(200).json({
-		// 		status: true,
-		// 		message: success
-		// 	});
-		// },(exception) => {
-		// 	console.log(exception);
-		// 	res.status(500).json({
-		// 		status: false,
-		// 		message: exception
-		// 	});
-		// });
+		 //let returnJson = testObjectMapping.mapIceFreshOrderObjects();
+		cron.runScheduledJobs().then((success) => {
+			res.status(200).json({
+				status: true,
+				message: success
+			});
+		},(exception) => {
+			console.log(exception);
+			res.status(500).json({
+				status: false,
+				message: exception
+			});
+		});
 
 		// try {
 		// 	let returnJson = cron.runScheduledJobs();
