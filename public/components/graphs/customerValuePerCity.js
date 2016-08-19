@@ -51,9 +51,14 @@ const NumberOfPurchasesByDay = React.createClass({
 						<div style={container}>
 							<div className="col-md-9 col-lg-9 col-xl-9">
 								<Card>
-									<CardText>
-										<h2> Customer value per city </h2>
+									<h2> </h2>
+										<CardHeader
+                      title="Customer value per city "
+                      actAsExpander={false}
+                      showExpandableButton={false}
+                    />
 										<Divider/>
+									<CardText>
 										<div style={pieChart}>
 											<PieChart
 										      data={this.state.data}
@@ -68,7 +73,23 @@ const NumberOfPurchasesByDay = React.createClass({
 								</Card>
 							</div>
 							<div className="col-md-3 col-lg-3 col-xl-3">
-						
+								<Card>
+								<CardText>
+									<h4>Description</h4>
+									The Customer Value per city chart is genderated considering various vital factors of the business, 
+									which is mainly centered around the customers engagement patterns and potential value the region presents
+									as a percentage out of the overrall value.
+								</CardText>
+								</Card>
+								<p></p>
+								<Card>
+								<CardText>
+									<h4>Pain Point Analysis</h4>
+									The Customer Value per city chart is genderated considering various vital factors of the business, 
+									which is mainly centered around the customers engagement patterns and potential value the region presents
+									as a percentage out of the overrall value.
+								</CardText>
+								</Card>
 							</div>
 						</div>
 					: ''

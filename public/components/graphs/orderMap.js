@@ -24,17 +24,21 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 //     }
 // }];
 
-var data = {geometry: {coordinates: [[[-74.0479, 40.8820], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{"text": "hi, this is a polygon!"}, type: "Feature"};
+var data = {geometry: {coordinates: [[[31.2304, 121.4737], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{"text": "hi, this is a polygon!"}, type: "Feature"};
 var popupContent = function(d) { return d.properties.text; };
 
 var width = 1000;
 var height = 800;
 var scale = (1 << 18);
-var center = [-73.95, 40.7];
+var center = [31.2304, 121.4737];
 // min and max of your zoom scale
 var scaleExtent = [1 << 12, 1 << 13];
 // set your center point
 	
+const orderMapStyle = {
+	marginTop: 100,
+}
+
 var popupContent = function(d) { return d.properties.text; };
 
 const orderMap = React.createClass({
@@ -86,22 +90,10 @@ const orderMap = React.createClass({
 	    }
 
 		return (			
-			<div style={styleContainer}>
-				<Card>
-					<Map
-					    width= {width}
-					    height= {height}
-					    scale= {scale}
-					    center= {center}
-					    zoomScale= {this.state.scale}
-					/>
-					 
-					<ZoomControl
-			            zoomInClick={zoomIn}
-			            zoomOutClick={zoomOut}
-			        />
-			    </Card>
-		    </div>
+			<div style={orderMapStyle} className="col-md-12 col-lg-12 col-xl-12 col-xl-12 ">
+					
+					<iframe  src="https://www.google.com/maps/d/embed?mid=1OVp5OzHA6ovTN1j1Adl3hHMxrjg" width="1280" height="500"></iframe>		    
+		  </div>
 		)
 	}
 });

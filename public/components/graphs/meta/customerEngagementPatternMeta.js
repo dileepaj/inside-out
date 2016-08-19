@@ -1,4 +1,4 @@
-const loadGraph = function(mappedData) {
+const loadGraph = function(mappedData,retentionRate) {
     // Give the points a 3D feel by adding a radial gradient
     Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function (color) {
         return {
@@ -35,10 +35,10 @@ const loadGraph = function(mappedData) {
             }
         },
         title: {
-            text: ''
+            text: 'Consumer Retention Rate'
         },
         subtitle: {
-            text: ''
+            text: `${retentionRate}`
         },
         plotOptions: {
             scatter: {
