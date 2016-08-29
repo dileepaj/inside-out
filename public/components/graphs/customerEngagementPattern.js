@@ -3,7 +3,10 @@ import rd3 from 'rd3';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Toggle from 'material-ui/Toggle';
 import loadGraph from './meta/customerEngagementPatternMeta';
-import CustomerEngagementGrowth from './meta/customerEngagementGrowth';
+
+//to be impletemented
+//import CustomerEngagementGrowth from './meta/customerEngagementGrowth';
+
 import Divider from 'material-ui/Divider';
 import 'whatwg-fetch';
 
@@ -74,7 +77,7 @@ const CustomerEngagement = React.createClass({
                     />
                     <Divider />
                     <CardText expandable={true}>
-                      <CustomerEngagementGrowth />
+                      
                     </CardText>
                     <div id="container-cus-pattern">
                                
